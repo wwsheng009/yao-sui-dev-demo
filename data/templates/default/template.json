@@ -1,0 +1,16 @@
+{
+    "scripts": {
+      "before:build": [
+        { "type": "process", "content": "scripts.build.Before" },
+        {
+          "type": "command",
+          "content": "pnpx @tailwindcss/cli -i ./__assets/css/tailwind.css -o ./__assets/css/tailwind.min.css --minify"
+        }
+      ],
+      "after:build": [{ "type": "process", "content": "scripts.build.After" }],
+      "build:complete": [
+        { "type": "process", "content": "scripts.build.Complete" }
+      ]
+    }
+  }
+  

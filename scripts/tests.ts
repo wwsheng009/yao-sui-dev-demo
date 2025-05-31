@@ -41,7 +41,5 @@ export function AppAfterMigrate(option: MigrateOption) {
  * yao run scripts.tests.Reset
  */
 function Reset() {
-  ResetDemoData(); // Reset the demo data
   ResetAdmins(); // Reset the admins data
-  ResetPets(); // Reset the pets data
 }

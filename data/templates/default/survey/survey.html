@@ -1,0 +1,28 @@
+<div class="survey-container">
+  <h2 s:trans>问卷调查</h2>
+  <form s:on-submit="submitSurvey">
+    <div class="question">
+      <label s:trans>您对此活动的满意度如何？</label>
+      <select name="satisfaction" id="satisfaction">
+        <option value="1" s:trans>非常不满意</option>
+        <option value="2" s:trans>不满意</option>
+        <option value="3" s:trans>一般</option>
+        <option value="4" s:trans>满意</option>
+        <option value="5" s:trans>非常满意</option>
+      </select>
+    </div>
+    <div class="question">
+      <label s:trans>您对本次活动有什么新的建议？</label>
+      <textarea name="suggestion" id="suggestion" placeholder="请输入您的建议"></textarea>
+    </div>
+    <button type="submit" s:trans>提交</button>
+  </form>
+  <div s:render="survey-results">
+    <div>{{ $env }}</div>
+    <div class="result-section" s:if="surveyResults != null">
+      <h3 s:trans>调查结果</h3>
+      <p s:trans>平均满意度: {{ surveyResults.averageSatisfaction }}</p>
+      <p s:trans>建议数量: {{ surveyResults.suggestionCount }}</p>
+    </div>
+  </div>
+</div>
