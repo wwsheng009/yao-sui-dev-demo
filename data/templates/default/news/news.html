@@ -1,0 +1,30 @@
+<div class="news-container">
+  <h2 s:trans>新闻列表</h2>
+  <div class="news-filter">
+    <select class="category-filter" s:on-change="filterNews">
+      <option value="all">全部分类</option>
+      <option s:for="categories" s:for-item="cat" value="{{cat.id}}">{{cat.name}}</option>
+    </select>
+  </div>
+  <ul class="news-list" s:render="news-list">
+    <li s:for="news" s:for-item="item" class="news-card">
+      <a href="/news/{{ item.id }}" class="card-link">
+        <div class="thumbnail" s:if="item.thumbnail">
+          <img src="{{item.thumbnail}}" alt="{{item.title}}">
+        </div>
+        <div class="card-content">
+          <div class="meta">
+            <span class="category" s:trans>{{item.category}}</span>
+            <span class="date">{{item.date}}</span>
+          </div>
+          <h3 class="title">{{ item.title }}</h3>
+          <p class="summary">{{ item.summary }}</p>
+          <div class="author">
+            <img src="{{item.author.avatar}}" class="avatar" s:if="item.author.avatar">
+            <span>{{item.author.name}}</span>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>

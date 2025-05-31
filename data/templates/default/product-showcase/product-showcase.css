@@ -1,0 +1,66 @@
+.product-showcase {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .hero-section {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  }
+  
+  .filter-btn {
+    @apply px-6 py-2 rounded-full border border-indigo-500 text-indigo-600 font-medium transition-all;
+  }
+  
+  .filter-btn.active {
+    @apply bg-indigo-500 text-white;
+  }
+  
+  .filter-btn:hover:not(.active) {
+    @apply bg-indigo-50;
+  }
+  
+  .product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-8px);
+  }
+  
+  .btn-view-details {
+    transition: all 0.3s ease;
+  }
+  
+  .rating span {
+    @apply text-lg;
+  }
+  
+  /* 模态框动画 */
+  .modal-content {
+    animation: modalFadeIn 0.3s ease-out;
+  }
+  
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .modal-content::-webkit-scrollbar {
+    width: 6px;
+  }
+  .modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+  .modal-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+  }
+  .modal-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

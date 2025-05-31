@@ -1,0 +1,4 @@
+{
+  "$todos": "@GetTodos",
+  "title": "Todo List"
+}

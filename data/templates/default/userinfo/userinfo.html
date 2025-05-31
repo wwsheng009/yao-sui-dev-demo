@@ -1,0 +1,21 @@
+<!-- e:\projects\yao\demos\cui-demo\data\templates\default\userinfo\userinfo.html -->
+<div class="userinfo-container">
+  <h2 s:trans>User Information</h2>
+  <div class="user-details">
+    <div class="avatar-placeholder">
+      <span s:trans>Avatar</span>
+    </div>
+    <div class="info">
+      <p><strong s:trans>Name:</strong> <span class="user-name">{{ user.name }}</span></p>
+      <p><strong s:trans>Email:</strong> <span class="user-email">{{ user.email }}</span></p>
+      <p s:if="user.bio"><strong s:trans>Bio:</strong> <span class="user-bio">{{ user.bio }}</span></p>
+    </div>
+  </div>
+  <div s:if="loading" class="loading-indicator" s:trans>
+    Loading user data...
+  </div>
+  <div s:if="error" class="error-message">
+    <p s:trans>Error loading user data:</p>
+    <p>{{ error }}</p>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<container>
+  <div>is main:{{isMain}}</div>
+
+
+  <input type="checkbox" s:attr-checked="{{True(isCheck)}}" />
+  <input type="checkbox" s:attr-checked="{{True(!isCheck)}}" />
+
+  <button s:attr-disabled="{{ True(isDisable) }}" >Click me</button>  
+  <button s:attr-disabled="{{ True(!isDisable) }}" >Click me</button>
+
+</container>

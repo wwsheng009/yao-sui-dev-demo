@@ -1,0 +1,8 @@
+{
+  "title": "LuxuryBrand",
+  "description": "高端产品展示平台",
+  "globalSettings": {
+    "theme": "light",
+    "currency": "¥"
+  }
+}

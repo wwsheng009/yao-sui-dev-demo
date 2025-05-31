@@ -1,0 +1,11 @@
+public/*
+node_modules/*
+.env
+.DS_Store
+db/*
+.trae/*
+!public/.gitkeep
+yarn.lock
+logs/*
+.clinerules/*
+.cursor/*

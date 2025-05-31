@@ -1,0 +1,6 @@
+{
+    "$products": "@GetProducts",
+    "title": "高端产品展示",
+    "description": "浏览我们精选的高端产品系列",
+    "showLightbox": false
+  }

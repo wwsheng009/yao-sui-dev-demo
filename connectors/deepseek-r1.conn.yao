@@ -1,0 +1,9 @@
+{
+    "label": "deepseek r1 ai model",
+    "type": "openai",
+    "options": {
+        "model": "deepseek-r1",
+        "key": "$ENV.DEEPSEEK_KEY",
+        "proxy": "https://api.deepseek.com"
+    }
+}

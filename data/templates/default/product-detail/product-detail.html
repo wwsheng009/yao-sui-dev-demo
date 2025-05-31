@@ -1,0 +1,48 @@
+<section class="product-detail">
+  <div class="product-gallery">
+    <div class="gallery-main" s:for="product.images" s:for-item="img">
+      <img src="{{ img }}" alt="产品图片" class="fade-in" />
+    </div>
+    <div class="gallery-thumbs">
+      <div 
+        s:for="product.images"
+        s:for-item="img"
+        class="thumb-item"
+        s:on-click="handleThumbClick"
+        s:data-index="{{ $index }}"
+      ></div>
+    </div>
+  </div>
+
+  <div class="product-info">
+    <h1 class="slide-up">{{ product.name }}</h1>
+    <div class="price pulse">¥{{ product.price }}</div>
+    
+    <div class="specs">
+      <div class="spec-item" s:for="product.specs">
+        <span class="spec-label">{{ $key }}:</span>
+        <span class="spec-value">{{ $value }}</span>
+      </div>
+    </div>
+
+    <button 
+      class="add-to-cart"
+      s:on-click="handleAddToCart"
+      s:data-id="{{ product.id }}"
+    >
+      加入购物车
+    </button>
+  </div>
+
+  <div class="product-description">
+    <h2>产品详情</h2>
+    <div class="content-fold" s:if="!expanded">
+      {{ product.description | truncate: 120 }}
+      <a s:on-click="toggleExpand">查看更多</a>
+    </div>
+    <div class="content-full" s:if="expanded">
+      {{ product.description }}
+      <a s:on-click="toggleExpand">收起</a>
+    </div>
+  </div>
+</section>

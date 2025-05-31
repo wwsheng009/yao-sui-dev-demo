@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
+    "allowJs": false,
+    "target": "ESNext",
+    "baseUrl": ".",
+    "paths": {
+      "@yao/*": [
+        ".vscode/types/*"
+      ],
+      "@lib/*": [
+        "scripts/lib/*"
+      ],
+      "@scripts/*": [
+        "scripts/*"
+      ]
+    },
+    "lib": [
+      "ESNEXT",
+      "DOM"
+    ],
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "ts-node": {
+    "require": [
+      "tsconfig-paths/register"
+    ]
+  }
+}

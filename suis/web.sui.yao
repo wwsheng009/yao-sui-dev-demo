@@ -1,0 +1,22 @@
+{
+  // yao sui build web default
+  // yao sui watch web default
+  "name": "Yao Demo App",
+
+  /**
+   * Choose the storage driver for the templates.
+   */
+  "storage": {
+    "driver": "local", // local the templates are stored in the local file system. ( currently only local is supported )
+    "option": {
+      /**
+       * The root directory of the templates. is relative to the project data root.
+       * eg: root: "/templates" => the templates are stored in the project data root directory /data/templates
+       */
+      "root": "/templates"
+    }
+  },
+  "public": {
+    "root": "/" //编译生成文件的保存根据目录，可使用{{$session.xxx}}引用会话信息
+  }
+}
