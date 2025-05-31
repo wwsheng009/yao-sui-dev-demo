@@ -4,19 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="{{ description }}">
+  <meta name="keywords" content="{{ keywords }}">
+  <meta name="og:url" content="{{ author }}">
+  <meta name="og:title" content="{{ title }}">
+  <meta name="og:image" content="{{ copyright }}">
   <title>{{ title }} - 高端产品展示</title>
   <!-- <link rel="stylesheet" href="@assets/fonts.css">
   <link rel="stylesheet" href="@assets/style.css"> -->
 
-  <link href="@assets/css/light.css" type="text/css" rel="stylesheet" />
-  <link href="@assets/css/dark.css" type="text/css" rel="stylesheet" />
+  <!-- <link href="@assets/css/light.css" type="text/css" rel="stylesheet" />
+  <link href="@assets/css/dark.css" type="text/css" rel="stylesheet" /> -->
   <!-- <link href="@assets/css/fonts.css" type="text/css" rel="stylesheet" /> -->
   <!-- FAV LOGO -->
   <link href="@assets/css/tailwind.min.css" rel="stylesheet" />
   <!-- <link href="@assets/css/flowbite.min.css" rel="stylesheet" /> -->
 
 </head>
-<body  class="relative bg-transparent">
+<body  class="relative bg-transparent {{ globalSettings.theme }}">
+  
   <main>
     {{ __page }}
   </main>

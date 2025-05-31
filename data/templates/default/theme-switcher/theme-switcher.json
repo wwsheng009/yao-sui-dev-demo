@@ -1,0 +1,4 @@
+{
+  "$theme": "@GetCurrentTheme",
+  "title": "Theme Switcher"
+}

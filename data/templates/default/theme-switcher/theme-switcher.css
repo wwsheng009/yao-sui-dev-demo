@@ -1,0 +1,17 @@
+/* data/templates/default/theme-switcher/theme-switcher.css */
+.theme-switcher-container {
+    /* Ensure container adapts to theme */
+    @apply bg-gray-100 dark:bg-gray-900 min-h-screen;
+  }
+  
+  /* BEM naming for consistency */
+  .theme-switcher-container__header {
+    @apply text-center;
+  }
+  
+  .theme-switcher-container__content {
+    @apply mt-4;
+  }
+  
+  /* Import shared styles if needed */
+  @import '@assets/css/common.css';

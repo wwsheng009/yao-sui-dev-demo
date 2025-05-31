@@ -1,4 +1,8 @@
 {
+  "locales": [
+    { "label": "English", "value": "en-us", "default": true },
+    { "label": "简体中文", "value": "zh-cn" }
+  ],
     "scripts": {
       "before:build": [
         { "type": "process", "content": "scripts.build.Before" },
