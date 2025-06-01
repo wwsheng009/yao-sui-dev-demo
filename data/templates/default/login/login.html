@@ -1,0 +1,34 @@
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-md p-8 space-y-6">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold" s:trans>The editor for what's next</h2>
+      <p class="text-gray-400 mt-2" s:trans>A next-generation code editor designed for high-performance collaboration with humans and AI.</p>
+    </div>
+
+    <div class="space-y-4">
+      <div>
+        <input type="email" id="email" placeholder="{{ '::Email' }}" 
+               class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500"
+               s:data-type="email" s:on-input="handleInput" />
+      </div>
+      <div>
+        <input type="password" id="password" placeholder="{{ '::Password' }}"
+               class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500"
+               s:data-type="password" s:on-input="handleInput" />
+      </div>
+      <button s:on-click="handleLogin"
+              class="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors">
+        <span s:trans>Log in</span>
+      </button>
+    </div>
+
+    <div class="flex items-center justify-between text-sm text-gray-400">
+      <a href="#" class="hover:text-blue-500 transition-colors" s:trans>Forgot password?</a>
+      <a href="#" class="hover:text-blue-500 transition-colors" s:trans>Sign up</a>
+    </div>
+
+    <div class="text-center text-sm text-gray-400 mt-6">
+      <p s:trans>Available for macOS, Linux, and soon for Windows</p>
+    </div>
+  </div>
+</body>

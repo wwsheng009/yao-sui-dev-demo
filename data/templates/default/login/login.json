@@ -1,0 +1,12 @@
+{
+  "title": "The editor for what's next",
+  "description": "A next-generation code editor designed for high-performance collaboration with humans and AI.",
+  "form": {
+    "email": "",
+    "password": ""
+  },
+  "links": {
+    "forgotPassword": "#",
+    "signup": "#"
+  }
+}
