@@ -6,8 +6,37 @@ self.once = async function () {
   console.log('Theme switcher initialized');
 };
 
+type Theme = 'light' | 'dark' | 'system';
+
+function getTheme() {
+  const yao = new Yao();
+  const savedTheme = yao.Cookie('color-theme') as Theme | null;
+  return savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ? 'dark'
+    : 'light';
+}
+// 全局切换
+function setTheme(event: Event, data: EventData, detail: EventDetail) {
+  const { theme } = data;
+  const yao = new Yao();
+  const html = document.documentElement;
+  // Remove existing theme classes
+  html.classList.remove('light', 'dark');
+  if (theme === 'system') {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      html.classList.add('dark');
+    }
+    yao.SetCookie('color-theme', 'system');
+    return;
+  }
+  html.classList.add(theme);
+  yao.SetCookie('color-theme', theme);
+}
+
 // Handle theme selection
-self.setTheme = async (event: Event, data: EventData, detail: EventDetail) => {
+// 局部切换主题，通过render局部渲染
+// 也可以使用bodoy的class切换
+self.setTheme1 = async (event: Event, data: EventData, detail: EventDetail) => {
   try {
     const theme = data['theme'];
     if (!['light', 'dark', 'system'].includes(theme)) {
@@ -25,6 +54,7 @@ self.setTheme = async (event: Event, data: EventData, detail: EventDetail) => {
 
     // Update document class for theme
     if (theme === 'system') {
+      //
       document.body.className = '';
       // Check system preference
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -49,4 +79,4 @@ async function initState() {
   document.body.className = initialTheme === 'system' ? '' : initialTheme;
   console.log('Theme switcher state initialized with theme:', initialTheme);
 }
-document.addEventListener('DOMContentLoaded', initState);
+// document.addEventListener('DOMContentLoaded', initState);

@@ -1,0 +1,54 @@
+<body json:chart_data="{{chart_data}}">
+  <div class="container mx-auto px-4 py-8" ">
+  <div class=" bg-white rounded-lg shadow-lg p-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-2xl font-bold">微信指数</h1>
+      <div class="text-sm text-gray-500">{{ date }}</div>
+    </div>
+
+    <div class="mb-8">
+      <div class="flex items-center justify-between mb-4">
+        <div class="text-xl font-semibold">cursor</div>
+        <div class="flex items-center gap-2">
+          <span class="text-2xl font-bold">{{ index }}</span>
+          <span class="text-sm" s:class="{{ trend > 0 ? 'text-green-500' : 'text-red-500' }}">
+            {{ trend }}%
+          </span>
+        </div>
+      </div>
+
+      <div class="border rounded-lg p-4">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-semibold">指数趋势</h2>
+          <div class="flex gap-4">
+            <button s:class="{{ period === '7d' ? 'text-blue-600' : 'text-gray-500' }}" s:on-click="setPeriod"
+              s:data-period="7d">近7天</button>
+            <button s:class="{{ period === '30d' ? 'text-blue-600' : 'text-gray-500' }}" s:on-click="setPeriod"
+              s:data-period="30d">近30天</button>
+            <button s:class="{{ period === 'all' ? 'text-blue-600' : 'text-gray-500' }}" s:on-click="setPeriod"
+              s:data-period="all">全部</button>
+          </div>
+        </div>
+        <div class="h-64" s:render="trend-chart"></div>
+      </div>
+    </div>
+
+    <div class="border-t pt-6">
+      <h2 class="text-lg font-semibold mb-4">数据异动记录</h2>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <div class="text-gray-600">12月15日</div>
+          <div>
+            <div class="font-medium">整体指数值日环比</div>
+            <div class="text-red-500">244.17% ↑</div>
+          </div>
+          <div>
+            <div class="font-medium">视频号来源日环比</div>
+            <div class="text-red-500">1628.55% ↑</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>

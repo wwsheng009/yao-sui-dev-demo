@@ -1,0 +1,24 @@
+{
+  "$data": "@GetIndexData",
+  "date": "12月30日指数",
+  "index": "1,804,475",
+  "trend": 3.57,
+  "period": "30d",
+  "chart_data": [
+    {"date": "1/1", "value": 800000},
+    {"date": "2/21", "value": 1600000},
+    {"date": "4/12", "value": 700000},
+    {"date": "6/2", "value": 600000},
+    {"date": "7/23", "value": 500000},
+    {"date": "9/12", "value": 2400000},
+    {"date": "11/2", "value": 1600000},
+    {"date": "12/30", "value": 1804475}
+  ],
+  "anomaly_records": [
+    {
+      "date": "12月15日",
+      "overall_change": 244.17,
+      "video_change": 1628.55
+    }
+  ]
+}
