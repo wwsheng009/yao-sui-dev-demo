@@ -1,0 +1,55 @@
+use: 
+  default: 'neo' # default assistannt
+  title: 'neo'
+  prompt: 'neo'
+  
+guard: "scripts.guard.Chat"
+
+store:
+  connector: "default" #Name of the connector used to specify data storage method,default is app database connector
+  user_field: "user_id" #User ID field name, defaults to "user_id"
+  prefix: "yao_neo_" #Database table name prefix,will automatically create three table with prefix,+_history,+_chat,+_assistant
+  max_size: 100 #Maximum storage size limit
+  ttl: 3600 #Time To Live in seconds
+
+auth:
+  models:
+    user: "admin.user" # default is admin.user, The user model is a special model, it is used to handle the user, and the user is a user in the database.
+    guest: "guest" #The guest model is a special model, it is used to handle the guest user, and the guest user is not a user in the database.
+  fields:
+    id: "id" #the field name of the user id, default is id
+    roles: "roles" #the field name of the user roles, default is roles, it must be an JSON field.
+    permission: "permission" #the field name of the user permission, default is permission
+  session_fields:
+    id: "user_id" #the field name of the user id, default is user_id
+    roles: "user_roles" #the field name of the user roles, default is roles, it must be an JSON field.
+    guest: "guest_id" #the field name of the guest user, default is guest
+
+knowledge:
+  vector:
+    dirver: "" #openai -> embeddings driver,currently only support openai
+    options:
+      model: "text-embedding-ada-002" #default model for openai
+      api_key: "sr-"
+  graph:
+    dirver: "" #neo4j -> graph database driver,currently only support neo4j
+    options:
+      url: ""
+      username: ""
+      password: ""    
+  vectorizer:
+    dirver: "" #openai -> vectorizer driver,currently only support openai
+    options:
+      model: "text-embedding-ada-002" #default model for openai
+      api_key: "sr-"
+
+allows:
+  - "http://127.0.0.1:8000"
+  - "http://127.0.0.1:5099"
+  - "http://localhost:5099"
+  - "http://localhost:8000"
+
+connectors:
+  deepseek-chat:
+    vision: true
+    tools: true

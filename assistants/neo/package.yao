@@ -1,0 +1,34 @@
+{
+    "name": "neo-assistant",
+    "type": "assistant",
+    "description": "This is a chat assistant",
+    "assistant_id": "neo",
+    "mentionable": true,
+    "automated": false,
+    "readonly": true,
+    "built_in": true,
+    "sort": 0,
+    "path": "chat",
+    "connector": "deepseek-chat",
+    "created_at": "2022-02-22T14:00:00.000Z",
+    "tags": [
+        "test"
+    ],
+    "options": {
+        "temperature": 0.7,
+        "top_p": 1,
+        "frequency_penalty": 0,
+        "presence_penalty": 0
+    },
+    "avatar": "https://cdn.pixabay.com/photo/2020/01/16/17/21/pantheon-4771206_1280.jpg",
+    "prompts": "",
+    "workflow": {},
+    "placeholder": {
+        "title": "Chat with Neo",
+        "description": "You can chat with Neo here.",
+        "prompts": [
+            "你知道如何构建一个Yao DSL模型吗？"
+        ]
+    },
+    "locales": {}
+}
