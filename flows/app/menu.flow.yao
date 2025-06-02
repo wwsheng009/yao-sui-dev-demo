@@ -30,6 +30,42 @@
     ],
     "items": [
       
+    ],
+    "quick": [
+      {
+        "icon": "icon-user",
+        "name": "管理员",
+        "path": "/x/Table/admin.user",
+        "visible_menu": 0
+      },
+      {
+        "id": 0,
+        "key": "/chat",
+        "name": "Chat with Assistant",
+        "path": "/chat",
+        "icon": "material-sms"
+      },
+      {
+        "id": 1,
+        "key": "/assistants",
+        "name": "AI Assistants",
+        "path": "/assistants",
+        "icon": "material-robot_2"
+      },
+      {
+        "id": 2,
+        "key": "open:sidebar",
+        "name": "Open Dashboard",
+        "icon": "material-thumbnail_bar",
+        "path": "open:sidebar"
+      },
+      {
+        "id": 3,
+        "key": "/setting",
+        "name": "Settings",
+        "path": "/setting",
+        "icon": "material-settings"
+      }
     ]
   }
 }

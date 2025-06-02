@@ -1,87 +1,223 @@
 <div class="product-showcase">
-    <div class="hero-section bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-20">
-      <div class="container mx-auto text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">探索我们的高端产品</h1>
-        <p class="text-xl max-w-2xl mx-auto">精心挑选的优质产品，为您提供卓越体验</p>
+  <div class="hero-section bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-20">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">探索我们的高端产品</h1>
+      <p class="text-xl max-w-2xl mx-auto">精心挑选的优质产品，为您提供卓越体验</p>
+    </div>
+  </div>
+
+  <div class="filters py-8 bg-white shadow-sm">
+    <div class="container mx-auto">
+      <div class="flex flex-wrap justify-center gap-4">
+        <button s:on-click="filterProducts" s:data-category="all" class="filter-btn active">全部产品</button>
+        <button s:on-click="filterProducts" s:data-category="electronics" class="filter-btn">电子产品</button>
+        <button s:on-click="filterProducts" s:data-category="furniture" class="filter-btn">家居家具</button>
+        <button s:on-click="filterProducts" s:data-category="accessories" class="filter-btn">配饰</button>
       </div>
     </div>
-  
-    <div class="filters py-8 bg-white shadow-sm">
-      <div class="container mx-auto">
-        <div class="flex flex-wrap justify-center gap-4">
-          <button 
-            s:on-click="filterProducts" 
-            s:data-category="all"
-            class="filter-btn active"
-          >全部产品</button>
-          <button 
-            s:on-click="filterProducts" 
-            s:data-category="electronics"
-            class="filter-btn"
-          >电子产品</button>
-          <button 
-            s:on-click="filterProducts" 
-            s:data-category="furniture"
-            class="filter-btn"
-          >家居家具</button>
-          <button 
-            s:on-click="filterProducts" 
-            s:data-category="accessories"
-            class="filter-btn"
-          >配饰</button>
+  </div>
+
+  <div class="container mx-auto py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" s:render="product-list">
+      <div s:for="products" s:for-item="product"  class="product-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+        <div class="product-image relative">
+          <img src="{{ product.image }}" alt="{{ product.name }}" class="w-full h-64 object-cover">
+          <div s:if="product.featured"
+            class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">推荐</div>
+        </div>
+
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-semibold text-gray-800">{{ product.name }}</h3>
+            <span class="text-indigo-600 font-bold">{{ global.currency }}{{ product.price }}</span>
+          </div>
+
+          <p class="text-gray-600 mb-4">{{ product.description }}</p>
+
+          <div class="flex justify-between items-center">
+            <div class="rating flex text-yellow-400">
+              <span s:for="product.rating">★</span>
+            </div>
+            <button s:on-click="viewDetails" s:data-id="{{ product.id }}"
+              class="btn-view-details px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">查看详情</button>
+          </div>
         </div>
       </div>
     </div>
-  
-    <div class="container mx-auto py-12">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        <div 
-          s:for="products" 
-          s:for-item="product"
-          class="product-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-        >
-          <div class="product-image relative">
-            <img 
-              src="{{ product.image }}" 
-              alt="{{ product.name }}" 
-              class="w-full h-64 object-cover"
-            >
-            <div 
-              s:if="product.featured"
-              class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold"
-            >推荐</div>
+  </div>
+  <footer class="footer bg-gray-800 text-white py-12">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4">LuxuryBrand</h3>
+          <p>提供高端产品与卓越服务</p>
+        </div>
+        <!-- 其他页脚内容 -->
+      </div>
+      <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+        <p>&copy; 2025 LuxuryBrand. 保留所有权利。</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- 产品详情模态框 -->
+<div s:render="product-detail-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden transition-opacity duration-300 p-4">
+  <div class="modal-content bg-white rounded-2xl overflow-hidden shadow-2xl max-w-5xl w-full max-h-[calc(100vh-2rem)] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0" s:class="scale-100 opacity-100" role="dialog" aria-labelledby="modal-title">
+    <!-- Modal Header -->
+    <div class="modal-header bg-gradient-to-r from-indigo-600 to-purple-700 text-white p-4 sticky top-0 z-10">
+      <div class="flex justify-between items-center">
+        <h2 id="modal-title" class="text-xl font-bold">{{ product.name }}</h2>
+        <button s:on-click="closeModal" class="close-btn text-black hover:text-gray-200 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="flex items-center mt-1">
+        <div class="rating flex text-yellow-400 mr-3">
+          <span s:for="product.rating">★</span>
+        </div>
+        <span class="text-gray-200 text-sm">({{ product.reviews }} 条评价)</span>
+      </div>
+    </div>
+
+    <!-- Product Main Content -->
+    <div class="product-detail-content grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+      <!-- Product Gallery -->
+      <div class="product-gallery">
+        <div class="main-image mb-3 rounded-lg overflow-hidden shadow-md max-h-80">
+          <img src="{{ product.image }}" alt="{{ product.name }}" class="w-full h-auto object-cover">
+        </div>
+        <div class="thumbnail-grid grid grid-cols-4 gap-2">
+          <div s:for="product.gallery" class="thumbnail cursor-pointer border-2 border-transparent hover:border-indigo-500 rounded-md overflow-hidden transition-all">
+            <img src="{{ . }}" alt="产品图" class="w-full h-20 object-cover" s:on-click="changeMainImage" s:data-src="{{ . }}">
           </div>
-          
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="text-xl font-semibold text-gray-800">{{ product.name }}</h3>
-              <span class="text-indigo-600 font-bold">{{ global.currency }}{{ product.price }}</span>
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <div class="price-section mb-4">
+          <p class="text-gray-600 text-base mb-1">建议零售价</p>
+          <p class="text-2xl font-bold text-indigo-800">{{ global.currency }}{{ product.price }}</p>
+          <div s:if="product.originalPrice" class="text-gray-500 line-through text-sm">
+            {{ global.currency }}{{ product.originalPrice }}
+          </div>
+        </div>
+
+        <div class="description mb-4">
+          <h3 class="text-lg font-semibold mb-2 text-gray-800">产品描述</h3>
+          <p class="text-gray-700 text-sm leading-relaxed">{{ product.description }}</p>
+        </div>
+
+        <div class="features mb-4">
+          <h3 class="text-lg font-semibold mb-2 text-gray-800">产品特性</h3>
+          <ul class="space-y-1">
+            <li s:for="product.details.features" class="flex items-start">
+              <svg class="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-gray-700 text-sm">{{ . }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Sticky Action Buttons -->
+        <div class="actions flex flex-wrap gap-3 sticky bottom-0 bg-blue p-4 -mx-4 border-t border-gray-200">
+          <button class="btn-buy px-6 py-2 bg-blue from-indigo-700 border-2 border-indigo-700 to-purple-800 text-blue font-medium rounded-lg hover:bg-indigo-800 transition-colors flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+            立即购买
+          </button>
+          <button class="btn-favorite px-4 py-2 bg-white border-2 border-indigo-700 text-indigo-700 font-medium rounded-lg hover:bg-indigo-100 transition-colors flex items-center" s:on-click="toggleFavorite" s:data-id="{{ product.id }}">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" s:class="{{ isFavorite ? 'text-red-500 fill-red-500' : 'text-indigo-700' }}">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+            收藏
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Specifications -->
+    <div class="specifications bg-gray-50 p-4">
+      <h3 class="text-lg font-bold mb-3 text-gray-800 border-b pb-2">详细规格</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div s:for="product.details.specifications">
+          <h4 class="text-base font-semibold mb-2 text-gray-700">{{ $key }}</h4>
+          <table class="w-full text-sm">
+            <tbody>
+              <tr s:for="$value" class="border-b border-gray-200">
+                <td class="py-2 pr-3 text-gray-600 font-medium">{{ $key }}</td>
+                <td class="py-2 text-gray-800">{{ $value }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="reviews p-4">
+      <h3 class="text-lg font-bold mb-3 text-gray-800 border-b pb-2">用户评价</h3>
+      <div class="review-summary mb-4 bg-indigo-50 rounded-lg p-4">
+        <div class="flex flex-wrap items-center">
+          <div class="mr-6">
+            <p class="text-3xl font-bold text-indigo-800">{{ product.rating }}</p>
+            <div class="rating flex text-yellow-400 mt-1">
+              <span s:for="product.rating">★</span>
             </div>
-            
-            <p class="text-gray-600 mb-4">{{ product.description }}</p>
-            
-            <div class="flex justify-between items-center">
-              <div class="rating flex text-yellow-400">
-                <span s:for="product.rating">★</span>
+            <p class="text-gray-600 text-sm mt-1">基于 {{ product.reviews }} 条评价</p>
+          </div>
+          <div class="flex-grow">
+            <div s:for="[5,4,3,2,1]" class="flex items-center mb-1">
+              <span class="w-8 text-yellow-400 text-sm">{{ . }}★</span>
+              <div class="w-36 h-1.5 bg-gray-200 rounded-full mx-2">
+                <div class="h-full bg-yellow-400 rounded-full" style="width: {{ product.ratingDistribution[.] }}"></div>
               </div>
-              <button 
-                s:on-click="viewDetails" 
-                s:data-id="{{ product.id }}"
-                class="btn-view-details px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
-              >查看详情</button>
+              <span class="text-gray-600 text-sm">{{ product.ratingCounts[.] }} 条</span>
             </div>
           </div>
         </div>
       </div>
+      <div class="review-list space-y-4">
+        <div s:for="product.reviewsList" class="review-item bg-white p-4 rounded-lg shadow-sm">
+          <div class="flex items-start mb-3">
+            <div class="avatar bg-gray-200 border-2 border-dashed rounded-lg w-12 h-12" />
+            <div class="ml-3">
+              <h4 class="font-semibold text-gray-800 text-sm">{{ .username }}</h4>
+              <div class="rating flex text-yellow-400 text-xs mt-0.5">
+                <span s:for=".rating">★</span>
+              </div>
+              <p class="text-gray-500 text-xs">{{ .date }}</p>
+            </div>
+          </div>
+          <h5 class="font-medium text-gray-800 text-sm mb-1">{{ .title }}</h5>
+          <p class="text-gray-700 text-sm">{{ .content }}</p>
+          <div s:if=".images" class="review-images flex flex-wrap gap-2 mt-3">
+            <img s:for=".images" src="{{ . }}" alt="评价图片" class="w-16 h-16 object-cover rounded-md cursor-pointer" s:on-click="openImageLightbox" s:data-src="{{ . }}">
+          </div>
+        </div>
+      </div>
+      <div class="mt-4 text-center">
+        <button class="btn-more-reviews px-4 py-2 border-2 border-indigo-700 text-indigo-700 font-medium rounded-lg hover:bg-indigo-100 transition-colors">
+          查看更多评价
+        </button>
+      </div>
     </div>
   </div>
-  
-  <!-- 产品详情模态框 -->
-  <div 
-    s:render="product-detail-modal"
-    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
-  >
-    <div class="modal-content bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-      <!-- 内容将由后端渲染 -->
-    </div>
-  </div>
+</div>
+
+<!-- 图片灯箱 -->
+<div s:if="showLightbox" class="fixed inset-0 bg-black bg-opacity-90 z-60 flex items-center justify-center">
+  <img src="{{ lightboxImage }}" alt="大图预览" class="max-w-[90vw] max-h-[90vh] object-contain">
+  <button class="absolute top-6 right-6 text-white hover:text-gray-300" s:on-click="closeLightbox">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+</div>
+
+
