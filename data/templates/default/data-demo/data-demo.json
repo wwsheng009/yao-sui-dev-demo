@@ -1,0 +1,28 @@
+{
+    "$articles": "scripts.article.Search",
+    "comments": "$scripts.article.Comments",
+    "$showImage": {
+      "process": "scripts.article.ShowImage",
+      "args": ["$query.show"]
+    },
+    "length": 20,
+    "array": [
+      "item-1",
+      "$scripts.article.Setting",
+      { "$images": "scripts.article.Images" },
+      {
+        "process": "scripts.article.Thumbs",
+        "args": ["$query.show"],
+        "__exec": true
+      }
+    ],
+    "input": { "data": "hello world" },
+    "url": { "path": "$url.path" },
+    "categories": [
+        { "name": "technology", "count": 15, "icon": "💻", "description": "科技前沿与创新技术" },
+        { "name": "business", "count": 8, "icon": "💼", "description": "商业管理与市场趋势" },
+        { "name": "science", "count": 12, "icon": "🔬", "description": "科学研究与发现" },
+        { "name": "health", "count": 7, "icon": "🏥", "description": "健康与医疗资讯" },
+        { "name": "education", "count": 9, "icon": "📚", "description": "教育与学习资源" }
+    ]
+  }

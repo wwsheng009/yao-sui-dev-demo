@@ -1,0 +1,89 @@
+<body>
+    <!-- <div>ENV:{{$env}}</div> -->
+    <div id="app">
+        <h1>数据绑定</h1>
+        
+        <!-- 顶部分类导航 -->
+        <div class="top-nav">
+            <ul class="categories-horizontal">
+                <li s:for="categories" class="
+                  {{ item.name == articles.category ? 'text-primary-500 dark:text-primary-400  border-primary-500 dark:border-primary-400' : 'border-transparent ' }}
+                " s:data-category="{{ item.name }}" s:on-click="LoadCategory" category>
+                    <span class="category-icon">{{ item.icon }}</span>
+                    <span class="category-name">{{ item.name }}</span>
+                    <span class="category-count">({{ item.count }})</span>
+                    <span class="category-desc">{{ item.description }}</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="main-container">
+            
+            <!-- 主内容区 -->
+            <div class="content">
+        
+        <!-- 文章列表 -->
+        <div class="articles">
+            <h2>当前分类：{{ articles.category }}</h2>
+            <div s:if="len(articles.items) > 0">
+                <div s:for="articles.items" s:for-item="article" class="article-item">
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.content }}</p>
+                    <div class="article-meta">
+                        <span>发布时间：{{ article.publish_date }}</span>
+                        <span>阅读量：{{ article.views }}</span>
+                        <span s:if="article.likes > 0">点赞数：{{ article.likes }}</span>
+                        <span s:else>暂无点赞</span>
+                        <div s:if="article.tags != null && len(article.tags) > 0" class="tags">
+                            标签：
+                            <span s:for="article.tags" s:for-item="tag">{{ tag }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div s:else class="no-articles">
+                该分类下暂无文章
+            </div>
+        </div>
+        
+        <!-- 评论区域 -->
+        <div class="comments">
+            <h2>评论</h2>
+            <div s:if="len(comments) > 0">
+                <ul s:for="comments" s:for-item="comment" class="comment-item">
+                    <li>
+                        <div class="comment-header">
+                            <img s:if="comment.avatar" src="{{ comment.avatar }}" alt="{{ comment.author }}" class="avatar">
+                            <strong>{{ comment.author }}</strong>
+                            <span>{{ comment.create_time }}</span>
+                        </div>
+                        <p>{{ comment.content }}</p>
+                        <div s:if="comment.replies != null && len(comment.replies) > 0" class="replies">
+                            <div s:for="comment.replies" s:for-item="reply" class="reply">
+                                <strong>{{ reply.author }}</strong>
+                                <span>{{ reply.create_time }}</span>
+                                <p>{{ reply.content }}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div s:else class="no-comments">
+                暂无评论，快来发表第一条评论吧！
+            </div>
+            
+            <!-- 评论表单 -->
+            <div class="comment-form">
+                <h3>发表评论</h3>
+                <form s:on-submit="SubmitComment">
+                    <input type="text" s:model="comment.author" placeholder="您的姓名">
+                    <textarea s:model="comment.content" placeholder="评论内容"></textarea>
+                    <button type="submit">提交</button>
+                </form>
+            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
