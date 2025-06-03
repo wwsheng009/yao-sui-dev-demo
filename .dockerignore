@@ -2,9 +2,11 @@
 /.vscode/
 /.github/
 node_modules
+./**/node_modules
 db
 dist
 logs
 outdir
 package-lock.json
 pnpm-lock.yaml
+public

@@ -18,7 +18,7 @@
         "content": "scripts.build.Before"
       },
       {
-        "type": "command",
+        "type": "command2",
         "content": "pnpx @tailwindcss/cli -i ./__assets/css/tailwind.css -o ./__assets/css/tailwind.min.css --minify"
       }
     ],

@@ -1,0 +1,14 @@
+{
+  "locales": [
+    {
+      "label": "English",
+      "value": "en-us",
+      "default": true
+    },
+    {
+      "label": "简体中文",
+      "value": "zh-cn"
+    }
+  ],
+  "translator": "scripts.translator.Default"
+}
