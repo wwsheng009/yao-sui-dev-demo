@@ -1,0 +1,16 @@
+keys:
+    trans__userinfo_1: 用户信息
+    trans__userinfo_2: 头像
+    trans__userinfo_3: 姓名：
+    trans__userinfo_4: 电子邮件：
+    trans__userinfo_5: 简介：
+    trans__userinfo_6: 正在加载用户数据...
+    trans__userinfo_7: 加载用户数据时出错：
+messages:
+    Avatar: 头像
+    'Bio:': 简介：
+    'Email:': 电子邮件：
+    'Error loading user data:': 加载用户数据时出错：
+    Loading user data...: 正在加载用户数据...
+    'Name:': 姓名：
+    User Information: 用户信息

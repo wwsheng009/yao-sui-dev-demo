@@ -1,14 +1,25 @@
+keys:
+    trans__login_1: 为未来而生的编辑器
+    trans__login_2: 专为人类和AI高性能协作设计的下一代代码编辑器
+    trans__login_3: 邮箱
+    trans__login_4: 密码
+    trans__login_5: 登录
+    trans__login_6: Forgot password?
+    trans__login_7: 注册
+    trans__login_8: Available for macOS, Linux, and soon for Windows
 messages:
-  "The editor for what's next": "为未来而生的编辑器"
-  "A next-generation code editor designed for high-performance collaboration with humans and AI.": "专为人类和AI高性能协作设计的下一代代码编辑器。"
-  "Email": "邮箱"
-  "Password": "密码"
-  "Log in": "登录"
-  "Forgot password?": "忘记密码？"
-  "Sign up": "注册"
-  "Available for macOS, Linux, and soon for Windows": "支持 macOS、Linux，即将支持 Windows"
-  "Please fill in all fields": "请填写所有字段"
-  "Please enter a valid email address": "请输入有效的邮箱地址"
-  "Login failed. Please try again.": "登录失败，请重试"
-  "An error occurred during login. Please try again.": "登录过程中发生错误，请重试"
-  "Invalid email or password": "邮箱或密码无效"
+    A next-generation code editor designed for high-performance collaboration with humans and AI.: 专为人类和AI高性能协作设计的下一代代码编辑器
+    An error occurred during login Please try again: 登录过程中发生错误请重试
+    Available for macOS Linux and soon for Windows: 支持 macOS Linux 即将支持 Windows
+    Available for macOS, Linux, and soon for Windows: 支持 macOS Linux 即将支持 Windows
+    Email: 邮箱
+    Forgot password: 忘记密码
+    Forgot password?: 忘记密码
+    Invalid email or password: 邮箱或密码无效
+    Log in: 登录
+    Login failed Please try again: 登录失败请重试
+    Password: 密码
+    Please enter a valid email address: 请输入有效的邮箱地址
+    Please fill in all fields: 请填写所有字段
+    Sign up: 注册
+    The editor for what's next: 为未来而生的编辑器

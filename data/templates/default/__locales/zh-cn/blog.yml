@@ -1,0 +1,8 @@
+keys:
+    trans__blog_1: 你的名字
+    trans__blog_2: 评论内容
+    trans__blog_3: 提交
+messages:
+    Comment content: 评论内容
+    Submit: 提交
+    Your name: 你的名字

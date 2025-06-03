@@ -1,0 +1,26 @@
+keys:
+    trans__survey_1: 问卷调查
+    trans__survey_2: 您对此活动的满意度如何？
+    trans__survey_3: 非常不满意
+    trans__survey_4: 不满意
+    trans__survey_5: 一般
+    trans__survey_6: 满意
+    trans__survey_7: 非常满意
+    trans__survey_8: 您对本次活动有什么新的建议？
+    trans__survey_9: 提交
+    trans__survey_10: 调查结果
+    trans__survey_11: '平均满意度: {{ surveyResults.averageSatisfaction }}'
+    trans__survey_12: '建议数量: {{ surveyResults.suggestionCount }}'
+messages:
+    一般: 一般
+    不满意: 不满意
+    '平均满意度: {{ surveyResults.averageSatisfaction }}': '平均满意度: {{ surveyResults.averageSatisfaction }}'
+    '建议数量: {{ surveyResults.suggestionCount }}': '建议数量: {{ surveyResults.suggestionCount }}'
+    您对本次活动有什么新的建议？: 您对本次活动有什么新的建议？
+    您对此活动的满意度如何？: 您对此活动的满意度如何？
+    提交: 提交
+    满意: 满意
+    调查结果: 调查结果
+    问卷调查: 问卷调查
+    非常不满意: 非常不满意
+    非常满意: 非常满意

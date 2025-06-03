@@ -2,7 +2,7 @@
   "title": "LuxuryBrand",
   "description": "高端产品展示平台",
   "globalSettings": {
-    "theme": "dark",
+    "theme": "light",
     "currency": "¥",
     "language": "en-us"
   }

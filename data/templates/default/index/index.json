@@ -1,4 +1,6 @@
 {
   "$yao": "utils.app.Ping",
-  "title": "Yao App Engine"
+  "title": "Yao App Engine",
+  "$dirs": "@ListDir",
+  "apps": "ListApp"
 }

@@ -1,0 +1,8 @@
+keys:
+    trans__todolist-cache_1: Todo List
+    trans__todolist-cache_2: Add
+    trans__todolist-cache_3: Delete
+messages:
+    Add: 添加
+    Delete: 删除
+    Todo List: 待办事项

@@ -26,7 +26,7 @@ self.addTodo = async (event: Event, data: EventData, detail: EventDetail) => {
 
 // Toggle todo completion status
 self.toggleTodo = async (event: Event, data: EventData, detail: EventDetail) => {
-  const id =  parseInt(data["id"]);
+  const id = data["id"];
   const todos = self.store.GetJSON("todos") || [];
   const todo = todos.find((t: any) => t.id === id);
   if (todo) {
@@ -41,7 +41,7 @@ self.toggleTodo = async (event: Event, data: EventData, detail: EventDetail) => 
 
 // Delete a todo
 self.deleteTodo = async (event: Event, data: EventData, detail: EventDetail) => {
-  const id =  parseInt(data["id"]);
+  const id = data["id"];
   const success = await $Backend("/todolist").Call("DeleteTodo", id);
   if (success) {
     const todos = (self.store.GetJSON("todos") || []).filter((t: any) => t.id !== id);

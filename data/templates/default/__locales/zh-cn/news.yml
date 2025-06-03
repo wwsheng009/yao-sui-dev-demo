@@ -1,0 +1,6 @@
+keys:
+    trans__news_1: 新闻列表
+    trans__news_2: '{{item.category}}'
+messages:
+    '{{item.category}}': '{{item.category}}'
+    新闻列表: 新闻列表

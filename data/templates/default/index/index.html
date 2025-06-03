@@ -1,77 +1,76 @@
-<noscript>You need to enable JavaScript to run this app.</noscript>
-<div id="root">
-  <section>
-    <h1 class="title">title</h1>
-    <p class="version">Version {{yao.version}}</p>
-  </section>
+<!-- data/templates/default/home/home.html -->
+<body>
+  <main class="container mx-auto px-4 py-8 bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <!-- Header Section -->
+    <section class="mb-12 text-center">
+      <h1 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">{{ title }}</h1>
+      <p class="text-lg text-gray-600 dark:text-gray-300">Version {{ yao.version }}</p>
+    </section>
 
-  <section>
-    <h2 class="subtitle">About</h2>
-    <div class="blocks">
-      <h3>What is Yao ?</h3>
-      <p>
-        Yao is a free, open-source application engine that enables developers to
-        create web apps, REST APIs, business applications, and more, with AI as
-        a development partner.
-      </p>
-      <p>
-        Yao's name comes from the Chinese character 爻 (yáo), the core unit of
-        the Eight Trigrams in the I Ching. Each 爻 has two states—yin and yang,
-        like 0 and 1—whose interaction drives the trigrams, symbolizing natural
-        laws and constant change.
-      </p>
-
-      <div class="links">
-        <p class="flex">
-          <span class="mr-.5">📚 Documentation:</span>
-          <a href="https://yaoapps.com/docs" target="_blank">
-            https://yaoapps.com/docs
-          </a>
+    <!-- About Section -->
+    <section class="mb-12 bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-4">About</h2>
+      <div class="space-y-4">
+        <h3 class="text-xl font-medium text-gray-700 dark:text-gray-200">What is Yao?</h3>
+        <p class="text-gray-600 dark:text-gray-300" s:trans>
+          Yao is a free, open-source application engine that enables developers to create web apps, REST APIs, business applications, and more, with AI as a development partner.
         </p>
-        <p class="flex">
-          <span class="mr-.5">🏡 Join Yao Community:</span>
-          <a href="https://yaoapps.com/community" target="_blank">
-            https://yaoapps.com/community
-          </a>
+        <p class="text-gray-600 dark:text-gray-300" s:trans>
+          Yao's name comes from the Chinese character 爻 (yáo), the core unit of the Eight Trigrams in the I Ching. Each 爻 has two states—yin and yang, like 0 and 1—whose interaction drives the trigrams, symbolizing natural laws and constant change.
         </p>
-        <p class="flex">
-          <span class="mr-.5">💬 Build App via Chat:</span>
-          <a href="https://moapi.ai" target="_blank"> https://moapi.ai </a>
-        </p>
+        <div class="space-y-2">
+          <p class="flex items-center text-gray-600 dark:text-gray-300">
+            <span class="mr-2">📚</span>
+            <a href="https://yaoapps.com/docs" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Official Documentation: https://yaoapps.com/docs</a>
+          </p>
+          <p class="flex items-center text-gray-600 dark:text-gray-300">
+            <span class="mr-2">📚</span>
+            <a href="https://wwsheng009.github.io/yao-docs" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Yao Notes Documentation: https://wwsheng009.github.io</a>
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <h2 class="subtitle">Access Points</h2>
-    <div class="blocks">
-      <table>
-        <tbody>
-          <tr>
-            <td>Website</td>
-            <td>
-              <a href="http://{{ $url.host }}"> http://{{ $url.host }}</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Admin Panel</td>
-            <td>
-              <a
-                href="http://{{ $url.host }}/admin/login/admin"
-                target="_blank"
-                class="mr-1"
-              >
-                http://{{ $url.host }}/admin/login/admin
-              </a>
-              <span> ( account: demo@moapi.ai / password: Demo@5099 ) </span>
-            </td>
-          </tr>
-          <tr>
-            <td>API Root URL</td>
-            <td>http://{{ $url.host }}/api</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-</div>
+    
+
+    <!-- Horizontal Links Section -->
+    <section>
+      <div class="m-3.5">以下的演示的页面，请点击链接查看</div>
+      <ul class="flex flex-wrap gap-4 list-none p-0">
+        <li s:for="dirs" s:for-item="item">
+          <a href="{{ item }}" class="inline-block px-6 py-3 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <div class="text-lg font-medium">{{ item }}</div>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Access Points Section -->
+    <section class="mb-12 bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Access Points</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-gray-600 dark:text-gray-300">
+          <tbody>
+            <tr class="border-b dark:border-gray-700">
+              <td class="py-3 px-4 font-medium">Website</td>
+              <td class="py-3 px-4">
+                <a href="http://{{ $url.host }}" class="text-blue-600 dark:text-blue-400 hover:underline">http://{{ $url.host }}</a>
+              </td>
+            </tr>
+            <tr class="border-b dark:border-gray-700">
+              <td class="py-3 px-4 font-medium">Admin Panel</td>
+              <td class="py-3 px-4">
+                <a href="http://{{ $url.host }}/admin/login/admin" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">http://{{ $url.host }}/admin/login/admin</a>
+                <span>(account: demo@moapi.ai / password: Demo@5099)</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-medium">API Root URL</td>
+              <td class="py-3 px-4">http://{{ $url.host }}/api</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>

@@ -1,0 +1,9 @@
+keys:
+    trans__todolist_1: 待办事项
+    trans__todolist_2: 添加
+    trans__todolist_3: 删除
+messages:
+    Add a new todo item: 添加新的待办事项
+    Add: 添加
+    Delete: 删除
+    Todo List: 待办事项

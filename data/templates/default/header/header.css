@@ -1,15 +1,33 @@
-div{
-    background-color: chocolate;
+.header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem 0;
 }
 
-.add .xxv{
-    background-color: aquamarine;
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
-.ex > .xfe {
-    background-color: beige;
+.header-title {
+    margin: 0;
+    font-size: 1.5rem;
 }
 
-button{
-    color: blue;
+.header-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.header-button:hover {
+    background-color: #2980b9;
 }

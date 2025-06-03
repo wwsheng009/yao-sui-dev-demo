@@ -1,0 +1,102 @@
+<!-- data/templates/default/blog/blog.html -->
+<body class="bg-gray-100 dark:bg-gray-900">
+    <div id="app" class="container mx-auto px-4 py-8">
+      <!-- 顶部分类导航 -->
+      <nav class="mb-8">
+        <ul class="flex flex-wrap gap-4 categories-horizontal">
+          <li
+            s:for="categories"
+            s:for-item="item"
+            class="flex items-center px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300 {{ item.name == articles.category ? 'border-2 border-primary-500 dark:border-primary-400 text-primary-500 dark:text-primary-400' : 'border-2 border-transparent' }}"
+            s:data-category="{{ item.name }}"
+            s:on-click="LoadCategory"
+          >
+            <span class="category-icon mr-2 text-lg">{{ item.icon }}</span>
+            <span class="category-name font-semibold">{{ item.name }}</span>
+            <span class="category-count ml-2 text-sm text-gray-500 dark:text-gray-400">({{ item.count }})</span>
+            <span class="category-desc block text-sm text-gray-600 dark:text-gray-300 mt-1">{{ item.description }}</span>
+          </li>
+        </ul>
+      </nav>
+  
+      <!-- 主内容区 -->
+      <main class="grid grid-cols-1 gap-8">
+        <!-- 文章列表 -->
+        <section class="articles bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+          <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">当前分类：{{ articles.category }}</h2>
+          <div s:if="len(articles.items) > 0" s:render="articles-list">
+            <div s:for="articles.items" s:for-item="article" class="article-item border-b border-gray-200 dark:border-gray-700 pb-4 mb-4 last:border-b-0">
+              <h3 class="text-xl font-semibold text-primary-600 dark:text-primary-400">{{ article.title }}</h3>
+              <p class="text-gray-600 dark:text-gray-300">{{ article.content }}</p>
+              <div class="article-meta text-sm text-gray-500 dark:text-gray-400 mt-2 flex flex-wrap gap-4">
+                <span>发布时间：{{ article.publish_date }}</span>
+                <span>阅读量：{{ article.views }}</span>
+                <span s:if="article.likes > 0">点赞数：{{ article.likes }}</span>
+                <span s:else>暂无点赞</span>
+                <div s:if="article.tags != null && len(article.tags) > 0" class="tags flex gap-2">
+                  标签：
+                  <span s:for="article.tags" s:for-item="tag" class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">{{ tag }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div s:else class="no-articles text-gray-500 dark:text-gray-400 text-center py-4">
+            该分类下暂无文章
+          </div>
+        </section>
+  
+        <!-- 评论区域 -->
+        <section class="comments bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+          <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">评论</h2>
+          <div s:if="len(comments) > 0" s:render="comments-list">
+            <ul class="space-y-4">
+              <li s:for="comments" s:for-item="comment" class="comment-item border-b border-gray-200 dark:border-gray-700 pb-4 last:border-b-0">
+                <div class="comment-header flex items-center gap-4">
+                  <img s:if="comment.avatar" src="{{ comment.avatar }}" alt="{{ comment.author }}" class="w-10 h-10 rounded-full">
+                  <div>
+                    <strong class="text-gray-800 dark:text-gray-100">{{ comment.author }}</strong>
+                    <span class="text-sm text-gray-500 dark:text-gray-400 ml-2">{{ comment.create_time }}</span>
+                  </div>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 mt-2">{{ comment.content }}</p>
+                <div s:if="comment.replies != null && len(comment.replies) > 0" class="replies ml-6 mt-4 space-y-2">
+                  <div s:for="comment.replies" s:for-item="reply" class="reply border-l-2 border-gray-300 dark:border-gray-600 pl-4">
+                    <strong class="text-gray-800 dark:text-gray-100">{{ reply.author }}</strong>
+                    <span class="text-sm text-gray-500 dark:text-gray-400 ml-2">{{ reply.create_time }}</span>
+                    <p class="text-gray-600 dark:text-gray-300">{{ reply.content }}</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div s:else class="no-comments text-gray-500 dark:text-gray-400 text-center py-4">
+            暂无评论，快来发表第一条评论吧！
+          </div>
+  
+          <!-- 评论表单 -->
+          <div class="comment-form mt-6">
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">发表评论</h3>
+            <form s:on-submit="SubmitComment" class="space-y-4">
+              <input
+                type="text"
+                s:model="comment.author"
+                placeholder="{{ '::Your name' }}"
+                class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100"
+              >
+              <textarea
+                s:model="comment.content"
+                placeholder="{{ '::Comment content' }}"
+                class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 resize-vertical min-h-[100px]"
+              ></textarea>
+              <button
+                type="submit"
+                class="bg-primary-500 dark:bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-600 dark:hover:bg-primary-700 transition-colors duration-300"
+              >
+                {{ '::Submit' }}
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>

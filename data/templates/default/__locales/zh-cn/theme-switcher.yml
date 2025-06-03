@@ -1,7 +1,14 @@
+keys:
+    trans__theme-switcher_1: 主题切换器
+    trans__theme-switcher_2: 选择一个主题以更改应用程序的外观
+    trans__theme-switcher_3: 选择主题
+    trans__theme-switcher_4: 浅色
+    trans__theme-switcher_5: 深色
+    trans__theme-switcher_6: 系统
 messages:
-  Theme Switcher: 主题切换器
-  Select Theme: 选择主题
-  Light: 浅色
-  Dark: 深色
-  System: 系统
-  Select a theme to change the appearance of the application.: 选择一个主题以更改应用程序的外观。
+    Dark: 深色
+    Light: 浅色
+    Select Theme: 选择主题
+    Select a theme to change the appearance of the application: 选择一个主题以更改应用程序的外观
+    System: 系统
+    Theme Switcher: 主题切换器

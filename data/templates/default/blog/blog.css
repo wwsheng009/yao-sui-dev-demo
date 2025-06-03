@@ -1,0 +1,52 @@
+/* data/templates/default/blog/blog.css */
+@import '@assets/css/tailwind.min.css';
+
+/* 自定义样式 */
+body {
+  @apply font-sans leading-relaxed text-gray-800 dark:text-gray-100;
+}
+
+#app {
+  @apply bg-gray-100 dark:bg-gray-900 rounded-lg;
+}
+
+.categories-horizontal li {
+  @apply flex flex-col items-start;
+}
+
+.category-icon {
+  @apply text-lg;
+}
+
+.category-name {
+  @apply font-semibold;
+}
+
+.category-count {
+  @apply text-sm text-gray-500 dark:text-gray-400;
+}
+
+.category-desc {
+  @apply text-sm text-gray-600 dark:text-gray-300;
+}
+
+.article-item {
+  @apply transition-all duration-300;
+}
+
+.article-meta span {
+  @apply mr-4;
+}
+
+.comment-item {
+  @apply transition-all duration-300;
+}
+
+.comment-header img {
+  @apply object-cover;
+}
+
+.comment-form input,
+.comment-form textarea {
+  @apply transition-all duration-300;
+}

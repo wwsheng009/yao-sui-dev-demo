@@ -1,4 +1,5 @@
 function Search(args) {
+    console.log('Searching for:', args);
     return {
         
         category: 'technology',

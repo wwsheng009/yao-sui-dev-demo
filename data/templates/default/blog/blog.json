@@ -1,0 +1,9 @@
+{
+    "$categories": "@GetCategories",
+    "$articles": "@GetArticles",
+    "$comments": "@GetComments",
+    "comment": {
+      "author": "",
+      "content": ""
+    }
+  }

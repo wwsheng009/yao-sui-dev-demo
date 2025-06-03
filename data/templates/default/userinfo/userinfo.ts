@@ -7,16 +7,23 @@ self.once = async function () {
   console.log('Userinfo component initialized');
   // __sui_data contains data injected from the server, including results from JSON $handlers
   // and BeforeRender function.
-  if (__sui_data && __sui_data.user) {
-    self.store.SetJSON("currentUser", __sui_data.user);
-    console.log('User data loaded from __sui_data:', __sui_data.user);
-  } else {
-    console.log('No initial user data found in __sui_data, attempting to load...');
-    await loadUserData();
-  }
-  // Example: Add a class to the root element once initialized
-  self.$root.addClass('userinfo-initialized');
+  
 };
+
+async function initState() {
+  // self.store.SetJSON('todos', __sui_data['todos']);
+  // if (__sui_data && __sui_data.user) {
+  //   self.store.SetJSON("currentUser", __sui_data.user);
+  //   console.log('User data loaded from __sui_data:', __sui_data.user);
+  // } else {
+  //   console.log('No initial user data found in __sui_data, attempting to load...');
+  //   await loadUserData();
+  // }
+  // Example: Add a class to the root element once initialized
+  // self.$root.addClass('userinfo-initialized');
+}
+document.addEventListener("DOMContentLoaded", initState);
+
 
 async function loadUserData() {
   self.$root.find('.loading-indicator')?.removeClass('hidden');

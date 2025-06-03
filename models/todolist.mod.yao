@@ -1,0 +1,61 @@
+{
+    "name": "todo list",
+    "table": {
+        "name": "todo_list",
+        "comment": "todo list"
+    },
+    "columns": [
+        {
+            "label": "ID",
+            "name": "id",
+            "type": "ID"
+        },
+        {
+            "label": "标题",
+            "name": "text",
+            "type": "string",
+            "length": 255,
+            "comment": "标题",
+            "index": true,
+            "nullable": false,
+            "validations": [
+                {
+                    "method": "typeof",
+                    "args": [
+                        "string"
+                    ],
+                    "message": "{{input}}类型错误, {{label}}应该为字符串"
+                },
+                {
+                    "method": "minLength",
+                    "args": [
+                        2
+                    ],
+                    "message": "{{label}}至少需要2个字"
+                }
+            ]
+        },
+        {
+            "name": "completed",
+            "label": "完成",
+            "type": "boolean",
+            "default": false,
+            "comment": "完成",
+            "index": true,
+            "nullable": true,
+            "validations": [
+                {
+                    "method": "typeof",
+                    "args": [
+                        "bool"
+                    ]
+                }
+            ]
+        }
+    ],
+    "option": {
+        "timestamps": true,
+        "soft_deletes": true
+    }
+}
+// yao migrate -n todolist

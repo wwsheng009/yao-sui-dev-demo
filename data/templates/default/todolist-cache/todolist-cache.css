@@ -43,15 +43,9 @@
   border-bottom: 1px solid #eee;
 }
 
-.todo-item.completed {
-  background-color: #f0f0f0;
-  border-left: 4px solid #28a745;
-}
-
 .todo-item.completed span {
   text-decoration: line-through;
   color: #888;
-  opacity: 0.7;
 }
 
 .todo-item button {

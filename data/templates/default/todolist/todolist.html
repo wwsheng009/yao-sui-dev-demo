@@ -1,15 +1,19 @@
 <!-- data/templates/default/todolist/todolist.html -->
-<div class="todolist-container">
-  <h2 s:trans>Todo List</h2>
-  <div class="todo-input">
-    <input type="text" id="todo-input" placeholder="Add a new todo" s:trans="placeholder" />
-    <button s:on-click="addTodo" s:trans>Add</button>
+
+<body json:todos="{{todos}}">
+  <div is="/todolist/notice"></div>
+  <div class="todolist-container">
+    <h2 s:trans>Todo List</h2>
+    <div class="todo-input">
+      <input type="text" id="todo-input" placeholder="{{ '::Add a new todo item' }}" s:trans="placeholder" />
+      <button s:on-click="addTodo" s:trans>Add</button>
+    </div>
+    <ul class="todo-list" s:render="todo-list">
+      <li s:for="todos" s:for-item="todo" class="todo-item {{ todo.completed ? 'completed' : '' }}">
+        <input type="checkbox" s:data-id="{{ todo.id }}" s:attr-checked="todo.completed" s:on-click="toggleTodo" />
+        <span>{{ todo.text }}</span>
+        <button s:data-id="{{ todo.id }}" s:on-click="deleteTodo" s:trans>Delete</button>
+      </li>
+    </ul>
   </div>
-  <ul class="todo-list" s:render="todo-list" json:todos="{{todos}}">
-    <li s:for="todos" s:for-item="todo" class="todo-item" s:class="{{ todo.completed ? 'completed' : '' }}">
-      <input type="checkbox" s:data-id="{{ todo.id }}" s:attr-checked="todo.completed" s:on-click="toggleTodo" />
-      <span>{{ todo.text }}</span>
-      <button s:data-id="{{ todo.id }}" s:on-click="deleteTodo" s:trans>Delete</button>
-    </li>
-  </ul>
-</div>
+</body>
