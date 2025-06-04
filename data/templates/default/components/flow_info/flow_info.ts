@@ -32,7 +32,50 @@ self.once = function () {
     element.style.width = `${maxWidth}px`;
   }
 
-  // Dragging logic
+  // Unified move handler for dragging and resizing
+  const handleMove = (x: number, y: number) => {
+    if (isDragging) {
+      let newX = x - offsetX;
+      let newY = y - offsetY;
+      newX = Math.max(0, Math.min(newX, viewportWidth - element.offsetWidth));
+      newY = Math.max(0, Math.min(newY, viewportHeight - element.offsetHeight));
+      element.style.left = `${newX}px`;
+      element.style.top = `${newY}px`;
+    } else if (isResizing) {
+      let newWidth = initialWidth + (x - initialX);
+      let newHeight = initialHeight + (y - initialY);
+      newWidth = Math.min(newWidth, viewportWidth * 0.5);
+      newHeight = Math.min(newHeight, viewportHeight * 0.8);
+      element.style.width = `${newWidth}px`;
+      element.style.height = `${newHeight}px`;
+    }
+  };
+
+  // Unified end handler for cleanup
+  const handleEnd = () => {
+    isDragging = false;
+    isResizing = false;
+    element.style.cursor = 'move';
+    document.removeEventListener('mousemove', mouseMoveHandler);
+    document.removeEventListener('mouseup', handleEnd);
+    document.removeEventListener('touchmove', touchMoveHandler);
+    document.removeEventListener('touchend', handleEnd);
+  };
+
+  // Mouse move handler
+  const mouseMoveHandler = (e: MouseEvent) => {
+    handleMove(e.pageX, e.pageY);
+  };
+
+  // Touch move handler
+  const touchMoveHandler = (e: TouchEvent) => {
+    e.preventDefault();
+    if (e.touches.length > 0) {
+      handleMove(e.touches[0].pageX, e.touches[0].pageY);
+    }
+  };
+
+  // Dragging logic (Mouse)
   element.addEventListener('mousedown', (e) => {
     if (isMinimized) {
       restoreElement();
@@ -47,31 +90,32 @@ self.once = function () {
     offsetY = e.pageY - element.offsetTop;
     element.style.cursor = 'grabbing';
 
-    const handleMousemove = (e: MouseEvent) => {
-      if (!isDragging) return;
-
-      let x = e.pageX - offsetX;
-      let y = e.pageY - offsetY;
-
-      x = Math.max(0, Math.min(x, viewportWidth - element.offsetWidth));
-      y = Math.max(0, Math.min(y, viewportHeight - element.offsetHeight));
-
-      element.style.left = `${x}px`;
-      element.style.top = `${y}px`;
-    };
-
-    const handleMouseup = () => {
-      isDragging = false;
-      element.style.cursor = 'move';
-      document.removeEventListener('mousemove', handleMousemove);
-      document.removeEventListener('mouseup', handleMouseup);
-    };
-
-    document.addEventListener('mousemove', handleMousemove);
-    document.addEventListener('mouseup', handleMouseup);
+    document.addEventListener('mousemove', mouseMoveHandler);
+    document.addEventListener('mouseup', handleEnd);
   });
 
-  // Resizing logic
+  // Dragging logic (Touch)
+  element.addEventListener('touchstart', (e) => {
+    if (isMinimized) {
+      restoreElement();
+      return;
+    }
+    if ((e.target as HTMLElement).closest('.resize-handle') || 
+        (e.target as HTMLElement).closest('.minimize-btn') || 
+        (e.target as HTMLElement).closest('.close-btn')) return;
+
+    e.preventDefault();
+    isDragging = true;
+    const touch = e.touches[0];
+    offsetX = touch.pageX - element.offsetLeft;
+    offsetY = touch.pageY - element.offsetTop;
+    element.style.cursor = 'grabbing';
+
+    document.addEventListener('touchmove', touchMoveHandler);
+    document.addEventListener('touchend', handleEnd);
+  });
+
+  // Resizing logic (Mouse)
   resizeHandle.addEventListener('mousedown', (e) => {
     if (isMinimized) return;
     e.preventDefault();
@@ -81,28 +125,23 @@ self.once = function () {
     initialX = e.pageX;
     initialY = e.pageY;
 
-    const handleMousemove = (e: MouseEvent) => {
-      if (!isResizing) return;
+    document.addEventListener('mousemove', mouseMoveHandler);
+    document.addEventListener('mouseup', handleEnd);
+  });
 
-      let newWidth = initialWidth + (e.pageX - initialX);
-      let newHeight = initialHeight + (e.pageY - initialY);
+  // Resizing logic (Touch)
+  resizeHandle.addEventListener('touchstart', (e) => {
+    if (isMinimized) return;
+    e.preventDefault();
+    isResizing = true;
+    initialWidth = element.offsetWidth;
+    initialHeight = element.offsetHeight;
+    const touch = e.touches[0];
+    initialX = touch.pageX;
+    initialY = touch.pageY;
 
-      // Enforce maximum width (1/4 of viewport width) and maximum height (80% of viewport height)
-      newWidth = Math.min(newWidth, viewportWidth * 0.5);
-      newHeight = Math.min(newHeight, viewportHeight * 0.8);
-
-      element.style.width = `${newWidth}px`;
-      element.style.height = `${newHeight}px`;
-    };
-
-    const handleMouseup = () => {
-      isResizing = false;
-      document.removeEventListener('mousemove', handleMousemove);
-      document.removeEventListener('mouseup', handleMouseup);
-    };
-
-    document.addEventListener('mousemove', handleMousemove);
-    document.addEventListener('mouseup', handleMouseup);
+    document.addEventListener('touchmove', touchMoveHandler);
+    document.addEventListener('touchend', handleEnd);
   });
 
   // Minimize logic
@@ -110,7 +149,6 @@ self.once = function () {
     if (isMinimized) {
       restoreElement();
     } else {
-      // Save current state and minimize
       savedState = {
         width: element.style.width || `${element.offsetWidth}px`,
         height: element.style.height || `${element.offsetHeight}px`,
@@ -119,9 +157,9 @@ self.once = function () {
       };
       element.style.width = '40px';
       element.style.height = '40px';
-      element.style.left = '0px'; // Top-left corner
+      element.style.left = '0px';
       element.style.top = '0px';
-      element.classList.remove('min-w-[200px]', 'min-h-[100px]', 'w-[200px]', 'max-w-[25vw]', 'overflow-hidden', 'p-4', 'border', 'border-gray-200', 'rounded-lg', 'shadow-lg');
+      element.classList.remove('min-w-[200px]', 'min-h-[100px]', 'w-[200px]', 'max-w-[50vw]', 'overflow-hidden', 'p-4', 'border', 'border-gray-200', 'rounded-lg', 'shadow-lg');
       element.classList.add('min-w-[40px]', 'min-h-[40px]', 'w-10', 'h-10', 'rounded-full', 'bg-gray-100', 'border-none', 'shadow-sm');
       contentHeader.classList.add('hidden');
       contentBody.classList.add('hidden');

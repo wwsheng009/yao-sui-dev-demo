@@ -1,6 +1,6 @@
 #docker build --tag yao-cui-demo .
 #docker build --build-arg ARCH=amd64 --build-arg VERSION=0.10.5 --tag yao-cui-demo .
-#docker run -d --restart unless-stopped --name yao-ts-demo -p 5099:5099 yao-ts-demo
+#docker run -d --restart unless-stopped --name yao-cui-demo -p 7099:5099 yao-cui-demo
 
 ARG ARCH=amd64
 ARG VERSION=0.10.5
