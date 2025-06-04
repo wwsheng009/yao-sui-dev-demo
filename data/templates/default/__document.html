@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ $global.globalSettings.language }}" class="{{ $global.globalSettings.theme }}">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,5 +14,10 @@
   <link href="@assets/css/tailwind.min.css" rel="stylesheet" />
   <script src="@assets/js/flowbite.min.js"></script>
 </head>
-{{ __page }}
+<body>
+  <div is="/components/flow_info"></div>
+  {{ __page }}
+</body>
+
+
 </html>

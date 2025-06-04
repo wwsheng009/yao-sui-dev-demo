@@ -1,0 +1,28 @@
+.flow-info {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 10px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+  cursor: move;
+  min-width: 100px;
+  min-height: 50px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+  user-select: none; /* Prevent text selection during drag */
+}
+
+.resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background: #666;
+  cursor: nwse-resize; /* Diagonal resize cursor */
+}

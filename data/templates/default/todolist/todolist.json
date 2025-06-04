@@ -1,4 +1,8 @@
 {
   "$todos": "@GetTodos",
-  "title": "Todo List"
+  "title": "Todo List",
+  "page_info": [
+    "todo list演示页面，在cookie中设置一个key为locale，值为zh-CN，页面会显示中文，否则显示英文",
+    "后端使用数据库对象来保存数据，每次请求都会从cache中获取数据，而不是从数据库中获取数据"
+  ]
 }

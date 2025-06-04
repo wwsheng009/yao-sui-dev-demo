@@ -1,5 +1,29 @@
 {
     "isMain": true,
     "isCheck": true,
-    "isDisable": false
-}
+    "isDisable": false,
+    "isNull": null,
+    "user": { "Name": "John Doe", "Age": 30, "User": null },
+    "array": [1, 2, 3, 4, 5],
+    "map": { "a": 1, "b": 2, "c": 3 },
+    "tweets": [
+      { "Content": "Hello world", "Size": 11 },
+      { "Content": "This is a long tweet...", "Size": 22 }
+    ],
+    "posts": [
+      { "Author": "John", "Comments": [{ "Author": "John" }, { "Author": "Jane" }] },
+      { "Author": "Jane", "Comments": [{ "Author": "Alice" }] }
+    ],
+    "createdAt": "2023-08-14T00:00:00Z",
+    "accounts": [
+      { "Balance": 100 },
+      { "Balance": 200 }
+    ],
+    "numbers": [1, 2, 3, 4, 5],
+    "strings": ["apple", "orange", "grape"],
+    "bitwise": 10,
+    "nestedArray": [1, [2, 3], [4, [5]]],
+    "testString": "  Hello World  ",
+    "regexString": "hello123",
+    "dateString": "2023-08-14 15:04:05"
+  }

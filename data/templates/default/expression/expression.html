@@ -1,11 +1,826 @@
-<container>
-  <div>is main:{{isMain}}</div>
+<body class="bg-gray-100 font-sans">
+  <div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold text-center mb-8">Expr 表达式语言演示</h1>
+    <p class="text-center mb-6">以下为 Expr 表达式语言的测试用例，展示了各种表达式的输入与输出对比。查看<a href="https://expr-lang.org/docs/language-definition" class="text-blue-600 hover:underline">文档</a>以获取详细说明。</p>
 
+    <!-- Original Content -->
+    
+    <!-- Accordion for Expression Categories -->
+    <div id="accordion-collapse" data-accordion="collapse">
+      <!-- Literals -->
+      <h2 id="accordion-literals">
+        <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 hover:bg-gray-100" data-accordion-target="#literals-body" aria-expanded="true" aria-controls="literals-body">
+          <span>字面量</span>
+          <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </h2>
+      <div id="literals-body" class="hidden" aria-labelledby="accordion-literals">
+        <div class="p-5 border border-gray-200">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="border p-2">表达式</th>
+                <th class="border p-2">输入/原始值</th>
+                <th class="border p-2">输出</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border p-2">true</td>
+                <td class="border p-2">true</td>
+                <td class="border p-2">{{true}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">false</td>
+                <td class="border p-2">false</td>
+                <td class="border p-2">{{false}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">42</td>
+                <td class="border p-2">42</td>
+                <td class="border p-2">{{42}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">0x2A</td>
+                <td class="border p-2">0x2A</td>
+                <td class="border p-2">{{0x2A}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">0.5</td>
+                <td class="border p-2">0.5</td>
+                <td class="border p-2">{{0.5}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">"foo"</td>
+                <td class="border p-2">"foo"</td>
+                <td class="border p-2">{{"foo"}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">`Hello\nWorld`</td>
+                <td class="border p-2">`Hello\nWorld`</td>
+                <td class="border p-2">{{`Hello\nWorld`}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">[1, 2, 3]</td>
+                <td class="border p-2">[1, 2, 3]</td>
+                <td class="border p-2">{{[1, 2, 3]}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">map</td>
+                <td class="border p-2">{{map}}</td>
+                <td class="border p-2">{{map}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">isNull</td>
+                <td class="border p-2">{{isNull}}</td>
+                <td class="border p-2">{{isNull}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-  <input type="checkbox" s:attr-checked="{{True(isCheck)}}" />
-  <input type="checkbox" s:attr-checked="{{True(!isCheck)}}" />
+      <!-- Operators -->
+      <h2 id="accordion-operators">
+        <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100" data-accordion-target="#operators-body" aria-expanded="false" aria-controls="operators-body">
+          <span>运算符</span>
+          <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </h2>
+      <div id="operators-body" class="hidden" aria-labelledby="accordion-operators">
+        <div class="p-5 border border-gray-200">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="border p-2">表达式</th>
+                <th class="border p-2">输入/原始值</th>
+                <th class="border p-2">输出</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border p-2">2 + 3</td>
+                <td class="border p-2">2, 3</td>
+                <td class="border p-2">{{2 + 3}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">5 - 2</td>
+                <td class="border p-2">5, 2</td>
+                <td class="border p-2">{{5 - 2}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">4 * 3</td>
+                <td class="border p-2">4, 3</td>
+                <td class="border p-2">{{4 * 3}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">10 / 2</td>
+                <td class="border p-2">10, 2</td>
+                <td class="border p-2">{{10 / 2}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">10 % 3</td>
+                <td class="border p-2">10, 3</td>
+                <td class="border p-2">{{10 % 3}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">2 ^ 3</td>
+                <td class="border p-2">2, 3</td>
+                <td class="border p-2">{{2 ^ 3}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">5 == 5</td>
+                <td class="border p-2">5, 5</td>
+                <td class="border p-2">{{5 == 5}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">5 != 3</td>
+                <td class="border p-2">5, 3</td>
+                <td class="border p-2">{{5 != 3}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">not true</td>
+                <td class="border p-2">true</td>
+                <td class="border p-2">{{not true}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">true and false</td>
+                <td class="border p-2">true, false</td>
+                <td class="border p-2">{{true and false}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">true ? 1 : 0</td>
+                <td class="border p-2">true</td>
+                <td class="border p-2">{{true ? 1 : 0}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">isNull ?? "default"</td>
+                <td class="border p-2">{{isNull}}</td>
+                <td class="border p-2">{{isNull ?? "default"}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">user.Name</td>
+                <td class="border p-2">{{user}}</td>
+                <td class="border p-2">{{user.Name}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">user["Name"]</td>
+                <td class="border p-2">{{user}}</td>
+                <td class="border p-2">{{user["Name"]}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">array[0]</td>
+                <td class="border p-2">{{array}}</td>
+                <td class="border p-2">{{array[0]}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">array[-1]</td>
+                <td class="border p-2">{{array}}</td>
+                <td class="border p-2">{{array[-1]}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">"John" in ["John", "Jane"]</td>
+                <td class="border p-2">["John", "Jane"]</td>
+                <td class="border p-2">{{"John" in ["John", "Jane"]}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">"a" in map</td>
+                <td class="border p-2">{{map}}</td>
+                <td class="border p-2">{{"a" in map}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">user?.Name</td>
+                <td class="border p-2">{{user}}</td>
+                <td class="border p-2">{{user?.Name}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">user.User?.Name ?? "Anonymous"</td>
+                <td class="border p-2">{{user.User}}</td>
+                <td class="border p-2">{{user.User?.Name ?? "Anonymous"}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">"Hello" + " World"</td>
+                <td class="border p-2">"Hello", " World"</td>
+                <td class="border p-2">{{"Hello" + " World"}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">"Hello World" contains "World"</td>
+                <td class="border p-2">"Hello World"</td>
+                <td class="border p-2">{{"Hello World" contains "World"}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">regexString matches "h.*3"</td>
+                <td class="border p-2">{{regexString}}</td>
+                <td class="border p-2">{{regexString matches "h.*3"}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">1..3</td>
+                <td class="border p-2">1, 3</td>
+                <td class="border p-2">{{1..3}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">array[1:4]</td>
+                <td class="border p-2">{{array}}</td>
+                <td class="border p-2">{{array[1:4]}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">array[:3]</td>
+                <td class="border p-2">{{array}}</td>
+                <td class="border p-2">{{array[:3]}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">user.Name | lower() | split(" ")[0]</td>
+                <td class="border p-2">{{user.Name}}</td>
+                <td class="border p-2">{{user.Name | lower() | split(" ")[0]}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-  <button s:attr-disabled="{{ True(isDisable) }}" >Click me</button>  
-  <button s:attr-disabled="{{ True(!isDisable) }}" >Click me</button>
+      <!-- Variables -->
+      <h2 id="accordion-variables">
+        <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100" data-accordion-target="#variables-body" aria-expanded="false" aria-controls="variables-body">
+          <span>变量</span>
+          <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </h2>
+      <div id="variables-body" class="hidden" aria-labelledby="accordion-variables">
+        <div class="p-5 border border-gray-200">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="border p-2">表达式</th>
+                <th class="border p-2">输入/原始值</th>
+                <th class="border p-2">输出</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border p-2">let x = 42; x * 2</td>
+                <td class="border p-2">42</td>
+                <td class="border p-2">{{let x = 42; x * 2}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">let x = 42; let y = 2; x * y</td>
+                <td class="border p-2">42, 2</td>
+                <td class="border p-2">{{let x = 42; let y = 2; x * y}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">let name = user.Name | lower() | split(" "); "Hello, " + name[0] + "!"</td>
+                <td class="border p-2">{{user.Name}}</td>
+                <td class="border p-2">{{let name = user.Name | lower() | split(" "); "Hello, " + name[0] + "!"}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">'user' in $env</td>
+                <td class="border p-2">$env</td>
+                <td class="border p-2">{{'user' in $env}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">$env["user"].Name</td>
+                <td class="border p-2">{{user}}</td>
+                <td class="border p-2">{{$env["user"].Name}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-</container>
+      <!-- String Functions -->
+      <h2 id="accordion-string-functions">
+        <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100" data-accordion-target="#string-functions-body" aria-expanded="false" aria-controls="string-functions-body">
+          <span>字符串函数</span>
+          <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </h2>
+      <div id="string-functions-body" class="hidden" aria-labelledby="accordion-string-functions">
+        <div class="p-5 border border-gray-200">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="border p-2">表达式</th>
+                <th class="border p-2">输入/原始值</th>
+                <th class="border p-2">输出</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border p-2">trim(testString)</td>
+                <td class="border p-2">{{testString}}</td>
+                <td class="border p-2">{{trim(testString)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">trim(testString, "_")</td>
+                <td class="border p-2">{{testString}}, "_"</td>
+                <td class="border p-2">{{trim(testString, "_")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">trimPrefix("HelloWorld", "Hello")</td>
+                <td class="border p-2">"HelloWorld", "Hello"</td>
+                <td class="border p-2">{{trimPrefix("HelloWorld", "Hello")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">trimSuffix("HelloWorld", "World")</td>
+                <td class="border p-2">"HelloWorld", "World"</td>
+                <td class="border p-2">{{trimSuffix("HelloWorld", "World")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">upper("hello")</td>
+                <td class="border p-2">"hello"</td>
+                <td class="border p-2">{{upper("hello")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">lower("HELLO")</td>
+                <td class="border p-2">"HELLO"</td>
+                <td class="border p-2">{{lower("HELLO")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">split("apple,orange,grape", ",")</td>
+                <td class="border p-2">"apple,orange,grape", ","</td>
+                <td class="border p-2">{{split("apple,orange,grape", ",")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">splitAfter("apple,orange,grape", ",")</td>
+                <td class="border p-2">"apple,orange,grape", ","</td>
+                <td class="border p-2">{{splitAfter("apple,orange,grape", ",")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">replace("Hello World", "World", "Universe")</td>
+                <td class="border p-2">"Hello World", "World", "Universe"</td>
+                <td class="border p-2">{{replace("Hello World", "World", "Universe")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">repeat("Hi", 3)</td>
+                <td class="border p-2">"Hi", 3</td>
+                <td class="border p-2">{{repeat("Hi", 3)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">indexOf("apple pie", "pie")</td>
+                <td class="border p-2">"apple pie", "pie"</td>
+                <td class="border p-2">{{indexOf("apple pie", "pie")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">lastIndexOf("apple pie apple", "apple")</td>
+                <td class="border p-2">"apple pie apple", "apple"</td>
+                <td class="border p-2">{{lastIndexOf("apple pie apple", "apple")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">hasPrefix("HelloWorld", "Hello")</td>
+                <td class="border p-2">"HelloWorld", "Hello"</td>
+                <td class="border p-2">{{hasPrefix("HelloWorld", "Hello")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">hasSuffix("HelloWorld", "World")</td>
+                <td class="border p-2">"HelloWorld", "World"</td>
+                <td class="border p-2">{{hasSuffix("HelloWorld", "World")}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Date Functions -->
+      <h2 id="accordion-date-functions">
+        <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100" data-accordion-target="#date-functions-body" aria-expanded="false" aria-controls="date-functions-body">
+          <span>日期函数</span>
+          <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </h2>
+      <div id="date-functions-body" class="hidden" aria-labelledby="accordion-date-functions">
+        <div class="p-5 border border-gray-200">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="border p-2">表达式</th>
+                <th class="border p-2">输入/原始值</th>
+                <th class="border p-2">输出</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border p-2">now().Year()</td>
+                <td class="border p-2">now()</td>
+                <td class="border p-2">{{now().Year()}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">duration("1h").Seconds()</td>
+                <td class="border p-2">"1h"</td>
+                <td class="border p-2">{{duration("1h").Seconds()}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">date("2023-08-14").Year()</td>
+                <td class="border p-2">"2023-08-14"</td>
+                <td class="border p-2">{{date("2023-08-14").Year()}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">date(dateString, "2006-01-02 15:04:05", "Europe/Zurich").Hour()</td>
+                <td class="border p-2">{{dateString}}, "2006-01-02 15:04:05", "Europe/Zurich"</td>
+                <td class="border p-2">{{date(dateString, "2006-01-02 15:04:05", "Europe/Zurich").Hour()}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">date("2023-08-14 00:00:00").In(timezone("Europe/Zurich")).Hour()</td>
+                <td class="border p-2">"2023-08-14 00:00:00", "Europe/Zurich"</td>
+                <td class="border p-2">{{date("2023-08-14 00:00:00").In(timezone("Europe/Zurich")).Hour()}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">createdAt - now()</td>
+                <td class="border p-2">{{createdAt}}, now()</td>
+                <td class="border p-2">{{createdAt - now()}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Number Functions -->
+      <h2 id="accordion-number-functions">
+        <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100" data-accordion-target="#number-functions-body" aria-expanded="false" aria-controls="number-functions-body">
+          <span>数字函数</span>
+          <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </h2>
+      <div id="number-functions-body" class="hidden" aria-labelledby="accordion-number-functions">
+        <div class="p-5 border border-gray-200">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="border p-2">表达式</th>
+                <th class="border p-2">输入/原始值</th>
+                <th class="border p-2">输出</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border p-2">max(5, 7)</td>
+                <td class="border p-2">5, 7</td>
+                <td class="border p-2">{{max(5, 7)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">min(5, 7)</td>
+                <td class="border p-2">5, 7</td>
+                <td class="border p-2">{{min(5, 7)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">abs(-5)</td>
+                <td class="border p-2">-5</td>
+                <td class="border p-2">{{abs(-5)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">ceil(1.5)</td>
+                <td class="border p-2">1.5</td>
+                <td class="border p-2">{{ceil(1.5)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">floor(1.5)</td>
+                <td class="border p-2">1.5</td>
+                <td class="border p-2">{{floor(1.5)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">round(1.5)</td>
+                <td class="border p-2">1.5</td>
+                <td class="border p-2">{{round(1.5)}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Array Functions -->
+      <h2 id="accordion-array-functions">
+        <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100" data-accordion-target="#array-functions-body" aria-expanded="false" aria-controls="array-functions-body">
+          <span>数组函数</span>
+          <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </h2>
+      <div id="array-functions-body" class="hidden" aria-labelledby="accordion-array-functions">
+        <div class="p-5 border border-gray-200">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="border p-2">表达式</th>
+                <th class="border p-2">输入/原始值</th>
+                <th class="border p-2">输出</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border p-2">all(tweets, {.Size < 280})</td>
+                <td class="border p-2">{{tweets}}</td>
+                <td class="border p-2">{{all(tweets, {.Size < 280})}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">any(tweets, {.Size > 20})</td>
+                <td class="border p-2">{{tweets}}</td>
+                <td class="border p-2">{{any(tweets, {.Size > 20})}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">one(tweets, {.Size == 11})</td>
+                <td class="border p-2">{{tweets}}</td>
+                <td class="border p-2">{{one(tweets, {.Size == 11})}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">none(tweets, {.Size > 280})</td>
+                <td class="border p-2">{{tweets}}</td>
+                <td class="border p-2">{{none(tweets, {.Size > 280})}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">map(tweets, {.Size})</td>
+                <td class="border p-2">{{tweets}}</td>
+                <td class="border p-2">{{map(tweets, {.Size})}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">filter(numbers, {# > 3})</td>
+                <td class="border p-2">{{numbers}}</td>
+                <td class="border p-2">{{filter(numbers, {# > 3})}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">find(numbers, {# > 3})</td>
+                <td class="border p-2">{{numbers}}</td>
+                <td class="border p-2">{{find(numbers, {# > 3})}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">findIndex(numbers, {# > 3})</td>
+                <td class="border p-2">{{numbers}}</td>
+                <td class="border p-2">{{findIndex(numbers, {# > 3})}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">findLast(numbers, {# > 3})</td>
+                <td class="border p-2">{{numbers}}</td>
+                <td class="border p-2">{{findLast(numbers, {# > 3})}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">findLastIndex(numbers, {# > 3})</td>
+                <td class="border p-2">{{numbers}}</td>
+                <td class="border p-2">{{findLastIndex(numbers, {# > 3})}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">groupBy(tweets, .Size)</td>
+                <td class="border p-2">{{tweets}}</td>
+                <td class="border p-2">{{groupBy(tweets, .Size)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">count(numbers, {# > 3})</td>
+                <td class="border p-2">{{numbers}}</td>
+                <td class="border p-2">{{count(numbers, {# > 3})}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">count([true, false, true])</td>
+                <td class="border p-2">[true, false, true]</td>
+                <td class="border p-2">{{count([true, false, true])}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">concat([1, 2], [3, 4])</td>
+                <td class="border p-2">[1, 2], [3, 4]</td>
+                <td class="border p-2">{{concat([1, 2], [3, 4])}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">flatten(nestedArray)</td>
+                <td class="border p-2">{{nestedArray}}</td>
+                <td class="border p-2">{{flatten(nestedArray)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">uniq([1, 2, 2, 3])</td>
+                <td class="border p-2">[1, 2, 2, 3]</td>
+                <td class="border p-2">{{uniq([1, 2, 2, 3])}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">join(strings, ",")</td>
+                <td class="border p-2">{{strings}}</td>
+                <td class="border p-2">{{join(strings, ",")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">reduce(numbers, {#acc + #}, 0)</td>
+                <td class="border p-2">{{numbers}}, 0</td>
+                <td class="border p-2">{{reduce(numbers, {#acc + #}, 0)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">sum(accounts, .Balance)</td>
+                <td class="border p-2">{{accounts}}</td>
+                <td class="border p-2">{{sum(accounts, .Balance)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">mean(numbers)</td>
+                <td class="border p-2">{{numbers}}</td>
+                <td class="border p-2">{{mean(numbers)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">median(numbers)</td>
+                <td class="border p-2">{{numbers}}</td>
+                <td class="border p-2">{{median(numbers)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">first(numbers)</td>
+                <td class="border p-2">{{numbers}}</td>
+                <td class="border p-2">{{first(numbers)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">last(numbers)</td>
+                <td class="border p-2">{{numbers}}</td>
+                <td class="border p-2">{{last(numbers)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">take(numbers, 2)</td>
+                <td class="border p-2">{{numbers}}, 2</td>
+                <td class="border p-2">{{take(numbers, 2)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">reverse(numbers)</td>
+                <td class="border p-2">{{numbers}}</td>
+                <td class="border p-2">{{reverse(numbers)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">sort([3, 1, 4], "desc")</td>
+                <td class="border p-2">[3, 1, 4]</td>
+                <td class="border p-2">{{sort([3, 1, 4], "desc")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">sortBy(tweets, .Size, "desc")</td>
+                <td class="border p-2">{{tweets}}</td>
+                <td class="border p-2">{{sortBy(tweets, .Size, "desc")}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Map Functions -->
+      <h2 id="accordion-map-functions">
+        <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100" data-accordion-target="#map-functions-body" aria-expanded="false" aria-controls="map-functions-body">
+          <span>映射函数</span>
+          <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </h2>
+      <div id="map-functions-body" class="hidden" aria-labelledby="accordion-map-functions">
+        <div class="p-5 border border-gray-200">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="border p-2">表达式</th>
+                <th class="border p-2">输入/原始值</th>
+                <th class="border p-2">输出</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border p-2">keys(map)</td>
+                <td class="border p-2">{{map}}</td>
+                <td class="border p-2">{{keys(map)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">values(map)</td>
+                <td class="border p-2">{{map}}</td>
+                <td class="border p-2">{{values(map)}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Type Conversion Functions -->
+      <h2 id="accordion-type-conversion">
+        <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100" data-accordion-target="#type-conversion-body" aria-expanded="false" aria-controls="type-conversion-body">
+          <span>类型转换函数</span>
+          <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </h2>
+      <div id="type-conversion-body" class="hidden" aria-labelledby="accordion-type-conversion">
+        <div class="p-5 border border-gray-200">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="border p-2">表达式</th>
+                <th class="border p-2">输入/原始值</th>
+                <th class="border p-2">输出</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border p-2">type(42)</td>
+                <td class="border p-2">42</td>
+                <td class="border p-2">{{type(42)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">type("hello")</td>
+                <td class="border p-2">"hello"</td>
+                <td class="border p-2">{{type("hello")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">type(now())</td>
+                <td class="border p-2">now()</td>
+                <td class="border p-2">{{type(now())}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">int("123")</td>
+                <td class="border p-2">"123"</td>
+                <td class="border p-2">{{int("123")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">float("123.45")</td>
+                <td class="border p-2">"123.45"</td>
+                <td class="border p-2">{{float("123.45")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">string(123)</td>
+                <td class="border p-2">123</td>
+                <td class="border p-2">{{string(123)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">toJSON(map)</td>
+                <td class="border p-2">{{map}}</td>
+                <td class="border p-2">{{toJSON(map)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">fromJSON('{"a": 1, "b": 2}')</td>
+                <td class="border p-2">'{"a": 1, "b": 2}'</td>
+                <td class="border p-2">{{fromJSON('{"a": 1, "b": 2}')}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">toBase64("Hello World")</td>
+                <td class="border p-2">"Hello World"</td>
+                <td class="border p-2">{{toBase64("Hello World")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">fromBase64("SGVsbG8gV29ybGQ=")</td>
+                <td class="border p-2">"SGVsbG8gV29ybGQ="</td>
+                <td class="border p-2">{{fromBase64("SGVsbG8gV29ybGQ=")}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">toPairs(map)</td>
+                <td class="border p-2">{{map}}</td>
+                <td class="border p-2">{{toPairs(map)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">fromPairs([["a", 1], ["b", 2]])</td>
+                <td class="border p-2">[["a", 1], ["b", 2]]</td>
+                <td class="border p-2">{{fromPairs([["a", 1], ["b", 2]])}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Bitwise Functions -->
+      <h2 id="accordion-bitwise-functions">
+        <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100" data-accordion-target="#bitwise-functions-body" aria-expanded="false" aria-controls="bitwise-functions-body">
+          <span>位运算函数</span>
+          <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </h2>
+      <div id="bitwise-functions-body" class="hidden" aria-labelledby="accordion-bitwise-functions">
+        <div class="p-5 border border-gray-200">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="border p-2">表达式</th>
+                <th class="border p-2">输入/原始值</th>
+                <th class="border p-2">输出</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border p-2">bitand(0b1010, 0b1100)</td>
+                <td class="border p-2">0b1010, 0b1100</td>
+                <td class="border p-2">{{bitand(0b1010, 0b1100)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">bitor(0b1010, 0b1100)</td>
+                <td class="border p-2">0b1010, 0b1100</td>
+                <td class="border p-2">{{bitor(0b1010, 0b1100)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">bitxor(0b1010, 0b1100)</td>
+                <td class="border p-2">0b1010, 0b1100</td>
+                <td class="border p-2">{{bitxor(0b1010, 0b1100)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">bitnand(0b1010, 0b1100)</td>
+                <td class="border p-2">0b1010, 0b1100</td>
+                <td class="border p-2">{{bitnand(0b1010, 0b1100)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">bitnot(0b1010)</td>
+                <td class="border p-2">0b1010</td>
+                <td class="border p-2">{{bitnot(0b1010)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">bitshl(0b101101, 2)</td>
+                <td class="border p-2">0b101101, 2</td>
+                <td class="border p-2">{{bitshl(0b101101, 2)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">bitshr(0b101101, 2)</td>
+                <td class="border p-2">0b101101, 2</td>
+                <td class="border p-2">{{bitshr(0b101101, 2)}}</td>
+              </tr>
+              <tr>
+                <td class="border p-2">bitushr(-0b101, 2)</td>
+                <td class="border p-2">-0b101, 2</td>
+                <td class="border p-2">{{bitushr(-0b101, 2)}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

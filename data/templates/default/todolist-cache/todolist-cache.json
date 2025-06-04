@@ -1,4 +1,8 @@
 {
   "$todos": "@GetTodos",
-  "title": "Todo List"
+  "title": "Todo List",
+  "page_info": [
+    "This is a simple todo list application. ",
+    "You can add, remove, and mark todos as completed."
+  ]
 }

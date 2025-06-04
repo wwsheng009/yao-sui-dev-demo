@@ -1,4 +1,4 @@
-/* components/todolist/todolist.ts */
+/* components/todolist-cache/todolist-cache.ts */
 import { Component, EventData, EventDetail,$Backend, __sui_data } from "@yao/sui";
 
 const self = this as Component;
@@ -14,7 +14,7 @@ self.addTodo = async (event: Event, data: EventData, detail: EventDetail) => {
   if (!text) return;
 
   // Call backend to add todo
-  const newTodo = await $Backend("/todolist").Call("AddTodo", text);
+  const newTodo = await $Backend("/todolist-cache").Call("AddTodo", text);
   if (newTodo) {
     const todos = self.store.GetJSON("todos") || [];
     todos.push(newTodo);
@@ -30,7 +30,7 @@ self.toggleTodo = async (event: Event, data: EventData, detail: EventDetail) => 
   const todos = self.store.GetJSON("todos") || [];
   const todo = todos.find((t: any) => t.id === id);
   if (todo) {
-    const updatedTodo = await $Backend("/todolist").Call("ToggleTodo", id);
+    const updatedTodo = await $Backend("/todolist-cache").Call("ToggleTodo", id);
     if (updatedTodo) {
       todo.completed = updatedTodo.completed;
       self.store.SetJSON("todos", todos);
@@ -42,7 +42,7 @@ self.toggleTodo = async (event: Event, data: EventData, detail: EventDetail) => 
 // Delete a todo
 self.deleteTodo = async (event: Event, data: EventData, detail: EventDetail) => {
   const id = data["id"];
-  const success = await $Backend("/todolist").Call("DeleteTodo", id);
+  const success = await $Backend("/todolist-cache").Call("DeleteTodo", id);
   if (success) {
     const todos = (self.store.GetJSON("todos") || []).filter((t: any) => t.id !== id);
     self.store.SetJSON("todos", todos);

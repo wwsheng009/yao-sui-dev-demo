@@ -6,3 +6,5 @@ messages:
     : Yao 是一个免费开源的应用程序引擎 让开发者能够创建网页应用 REST API 商业应用等 并以AI作为开发伙伴
     ? Yao's name comes from the Chinese character 爻 (yáo), the core unit of the Eight Trigrams in the I Ching. Each 爻 has two states—yin and yang, like 0 and 1—whose interaction drives the trigrams, symbolizing natural laws and constant change.
     : Yao的名字来源于汉字爻 这是易经八卦的核心单位 每个爻有两种状态阴和阳 就像0和1 它们的相互作用推动八卦 象征着自然法则和不断变化
+    ? SUI is a page template rendering engine provided by Yao. Using SUI, you can quickly create pages and components.
+    : SUI 是Yao 提供的一个页面模板渲染引擎，使用SUI能快速的创建出页面，组件
