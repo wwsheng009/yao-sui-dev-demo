@@ -20,5 +20,6 @@ else
     $YAO_PATH migrate
 fi
 mv data/templates/default/template.json.bak data/templates/default/template.json
+$YAO_PATH run scripts.tests.AppSetup
 $YAO_PATH sui build web default
 $YAO_PATH start
