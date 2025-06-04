@@ -23,8 +23,11 @@ self.once = function () {
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
 
+  if (self.store.GetJSON('page_info') != null) {
+    element.classList.remove('hidden');
+  }
   // Enforce maximum width at initialization
-  const maxWidth = viewportWidth * 0.25;
+  const maxWidth = viewportWidth * 0.5;
   if (element.offsetWidth > maxWidth) {
     element.style.width = `${maxWidth}px`;
   }
@@ -85,7 +88,7 @@ self.once = function () {
       let newHeight = initialHeight + (e.pageY - initialY);
 
       // Enforce maximum width (1/4 of viewport width) and maximum height (80% of viewport height)
-      newWidth = Math.min(newWidth, viewportWidth * 0.25);
+      newWidth = Math.min(newWidth, viewportWidth * 0.5);
       newHeight = Math.min(newHeight, viewportHeight * 0.8);
 
       element.style.width = `${newWidth}px`;
@@ -140,7 +143,7 @@ self.once = function () {
     element.style.left = savedState.left;
     element.style.top = savedState.top;
     element.classList.remove('min-w-[40px]', 'min-h-[40px]', 'w-10', 'h-10', 'rounded-full', 'bg-gray-100', 'border-none', 'shadow-sm');
-    element.classList.add('min-w-[200px]', 'min-h-[100px]', 'w-[200px]', 'max-w-[25vw]', 'overflow-hidden', 'p-4', 'border', 'border-gray-200', 'rounded-lg', 'shadow-lg');
+    element.classList.add('min-w-[200px]', 'min-h-[100px]', 'w-[200px]', 'max-w-[50vw]', 'overflow-hidden', 'p-4', 'border', 'border-gray-200', 'rounded-lg', 'shadow-lg');
     contentHeader.classList.remove('hidden');
     contentBody.classList.remove('hidden');
     resizeHandle.classList.remove('hidden');
