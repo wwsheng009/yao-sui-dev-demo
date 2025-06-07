@@ -1,6 +1,6 @@
 {
   "name": "管理员",
-  "table": { "name": "admin_user", "comment": "the administraor table" },
+  "table": { "name": "admin_user", "comment": "::The administraor table" },
   "columns": [
     { "label": "ID", "name": "id", "type": "ID" },
     {

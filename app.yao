@@ -1,7 +1,7 @@
 {
-  "name": "Demo Application", // The name of the application
-  "short": "Demo", // The short name of the application
-  "description": "Another yao application", // The application description
+  "name": "::Demo Application", // The name of the application
+  "short": "::Demo", // The short name of the application
+  "description": "::Another yao application", // The application description
   "version": "0.10.4", // The application version
   "adminRoot": "admin", // The admin panel root path, default is "admin"
   /**
