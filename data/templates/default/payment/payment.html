@@ -1,0 +1,208 @@
+<body json:validation="{{ validation }}" json:card_types="{{ cardTypes }}" json:countries="{{ countries }}">
+  <sui-page class="payment-form">
+    <div class="payment-container">
+      
+      <!-- Header -->
+      <div class="mb-6">
+        <h1>输入付款详情</h1>
+      </div>
+
+      <!-- Email Section -->
+      <div class="mb-6">
+        <label for="email">邮箱</label>
+        <input
+          type="email"
+          id="email"
+          value="{{ form.email }}"
+          s:on-input="handleEmailInput"
+        />
+      </div>
+
+      <!-- Payment Information Section -->
+      <div class="mb-6">
+        <h2 class="text-lg font-medium text-gray-900 mb-4">保存支付信息</h2>
+        
+        <!-- Card Number -->
+        <div class="mb-4">
+          <label for="cardNumber" class="block text-sm font-medium text-gray-700 mb-2">银行卡信息</label>
+          <div class="relative">
+            <input 
+              type="text" 
+              id="cardNumber" 
+              placeholder="1234 1234 1234 1234"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pr-20"
+              s:on-input="handleCardNumberInput"
+              maxlength="19"
+            />
+            <div class="absolute right-3 top-1/2 transform -translate-y-1/2 flex space-x-1 card-icons">
+              <img src="@assets/images/visa.svg" alt="Visa" class="w-6 h-4" />
+              <img src="@assets/images/mastercard.svg" alt="Mastercard" class="w-6 h-4" />
+              <img src="@assets/images/amex.svg" alt="American Express" class="w-6 h-4" />
+              <img src="@assets/images/diners.svg" alt="Diners Club" class="w-6 h-4" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Expiry and CVC -->
+        <div class="grid grid-cols-2 gap-4 mb-4">
+          <div>
+            <input 
+              type="text" 
+              id="expiry" 
+              placeholder="月份/年份"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              s:on-input="handleExpiryInput"
+              maxlength="5"
+            />
+          </div>
+          <div class="relative">
+            <input 
+              type="text" 
+              id="cvc" 
+              placeholder="CVC"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pr-8"
+              s:on-input="handleCvcInput"
+              maxlength="4"
+            />
+            <div class="absolute right-2 top-1/2 transform -translate-y-1/2">
+              <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cardholder Name -->
+        <div class="mb-4">
+          <label for="cardholderName" class="block text-sm font-medium text-gray-700 mb-2">持卡人姓名</label>
+          <input 
+            type="text" 
+            id="cardholderName" 
+            placeholder="全名"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            s:on-input="handleCardholderNameInput"
+          />
+        </div>
+      </div>
+
+      <!-- Billing Address Section -->
+      <div class="mb-6">
+        <h2 class="text-lg font-medium text-gray-900 mb-4">账单地址</h2>
+        
+        <!-- Country/Region -->
+        <div class="mb-4">
+          <select 
+            id="country" 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            s:on-change="handleCountryChange"
+          >
+            <option value="" disabled>选择国家/地区</option>
+            <option value="HK" selected>中国香港特别行政区</option>
+            <option value="CN">中国大陆</option>
+            <option value="TW">中国台湾</option>
+            <option value="MO">中国澳门特别行政区</option>
+            <option value="US">美国</option>
+            <option value="CA">加拿大</option>
+            <option value="GB">英国</option>
+            <option value="AU">澳大利亚</option>
+          </select>
+        </div>
+
+        <!-- State/Province -->
+        <div class="mb-4">
+          <select 
+            id="state" 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            s:on-change="handleStateChange"
+          >
+            <option value="" disabled selected>地区</option>
+            <option value="HK_ISLAND">香港岛</option>
+            <option value="KOWLOON">九龙</option>
+            <option value="NEW_TERRITORIES">新界</option>
+          </select>
+        </div>
+
+        <!-- Address Line 1 -->
+        <div class="mb-4">
+          <input 
+            type="text" 
+            id="address1" 
+            placeholder="地址第 1 行"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            s:on-input="handleAddress1Input"
+          />
+        </div>
+
+        <!-- Address Line 2 -->
+        <div class="mb-4">
+          <input 
+            type="text" 
+            id="address2" 
+            placeholder="地址第 2 行"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            s:on-input="handleAddress2Input"
+          />
+        </div>
+      </div>
+
+      <!-- Security Notice -->
+      <div class="mb-6">
+        <div class="security-agreement">
+          <input
+            type="checkbox"
+            id="securityAgreement"
+            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            s:on-change="handleSecurityAgreementChange"
+          />
+          <label for="securityAgreement">
+            <span>安全地保存我的信息，用于一键结账</span>
+            <span>在 Augment Code 及接受 Link 的<a href="#" class="text-blue-600 hover:underline">何服务条款</a>。</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="button"
+        id="submitButton"
+        class="w-full bg-green-600 hover:bg-green-700 disabled:bg-gray-400
+               disabled:cursor-not-allowed text-white font-medium py-3 px-4
+               rounded-md transition-all duration-200 ease-in-out
+               hover:-translate-y-0.5 hover:shadow-lg hover:shadow-green-500/25
+               focus:outline-none focus:ring-3 focus:ring-green-500/20
+               disabled:transform-none disabled:shadow-none text-base leading-6"
+        s:on-click="handleSubmit"
+      >
+        保存银行卡
+      </button>
+
+      <!-- Footer Text -->
+      <div class="mt-4 text-center text-sm text-gray-500 leading-relaxed">
+        <div class="max-w-sm mx-auto">
+          保存您的支付信息，即表示您允许 Augment Code 按照他们的<a href="#" class="text-blue-600 hover:underline">条款</a>从您这里收取未来款项。
+        </div>
+      </div>
+
+      <!-- Powered by Stripe -->
+      <div class="mt-6 text-center">
+        <div class="inline-flex items-center text-sm text-gray-400">
+          <span class="mr-2">Powered by</span>
+          <svg class="w-12 h-4" viewBox="0 0 60 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M59.5 12.5c0-6.9-5.6-12.5-12.5-12.5S34.5 5.6 34.5 12.5 40.1 25 47 25s12.5-5.6 12.5-12.5z" fill="#6772E5"/>
+            <path d="M47 8.5c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z" fill="white"/>
+            <path d="M25.5 8.5h-4v8h4c2.2 0 4-1.8 4-4s-1.8-4-4-4z" fill="#6772E5"/>
+            <path d="M17.5 8.5h-4v8h4v-8z" fill="#6772E5"/>
+            <path d="M9.5 8.5h-4v8h4c2.2 0 4-1.8 4-4s-1.8-4-4-4z" fill="#6772E5"/>
+            <path d="M1.5 8.5h-1.5v8h1.5v-8z" fill="#6772E5"/>
+          </svg>
+        </div>
+        <div class="mt-2 text-xs text-gray-400">
+          <a href="#" class="hover:underline">条款</a>
+          <span class="mx-2">·</span>
+          <a href="#" class="hover:underline">隐私</a>
+        </div>
+      </div>
+
+    </div>
+  </sui-page>
+</body>
